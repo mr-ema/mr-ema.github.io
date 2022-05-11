@@ -55,7 +55,7 @@ export const Name = styled.h1`
   animation: ${typing} 2s steps(34) 3s, ${blink} .5s step-end infinite alternate;
   box-sizing: content-box;
   border-right: 4px solid #ee666e;
-  color: #ee666e;
+  color: #ff777f;
   font-size: 3rem;
   font-weight: 800;
   white-space: nowrap;
@@ -68,7 +68,7 @@ export const Name = styled.h1`
 `
 
 export const Info = styled.span`
-  color: #aaa;
+  color: #ccc;
   font-size: 1.2rem;
   font-weight: 800;
 
@@ -78,7 +78,7 @@ export const Info = styled.span`
 `
 
 export const Technologies = styled.code`
-  color: #888;
+  color: #aaa;
   font-weight: 600;
 
   @media (max-width: 650px) {
@@ -92,7 +92,7 @@ export const Avatar = styled.div`
   align-items: center;
   justify-content: center;
   position: absolute;
-  opacity: .36;
+  opacity: .3;
   width: 50%;
   height: 50%;
 `

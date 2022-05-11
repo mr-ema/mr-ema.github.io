@@ -24,7 +24,7 @@ function About() {
               <Title>About me</Title>
               <Text>
                 • My name is <b>Antonio</b>, I'm a <b>web developer</b>.
-                I enjoy <b>code</b> and learn new things. When I <b>design</b>, I like to keep it <b>simple</b>.
+                I enjoy <b>code</b> and learn new things.
               </Text>
           </Container>
 

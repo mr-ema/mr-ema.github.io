@@ -154,7 +154,6 @@ export const Note = styled.span`
   margin: 1rem 0;
   padding: .6rem;
   opacity: .8;
-  text-wrap: nowrap;
   width: fit-content;
 
   @media (max-width: 600px) {
