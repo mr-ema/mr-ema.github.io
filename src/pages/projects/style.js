@@ -1,33 +1,33 @@
 import styled from 'styled-components'
 
 export const Wrapper = styled.div`
-  grid-column: 2/13;
+  grid-column: 1/13;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 3rem;
-  padding: 2rem;
+  gap: 10rem;
+  padding: 4rem 100px;
   position: relative;
   box-sizing: border-box;
 
   @media (max-width: 900px) {
     grid-column: 1/13;
-    padding: 0;
+    padding: 4rem 0;
   }
 `
 
 export const Box = styled.section`
   background: none;
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 2rem;
+  display: flex;
+  justify-content: center;
+  flex-flow: row wrap-reverse;
+  gap: 1rem;
   
   width: 100%;
   height: auto;
 `
 
 export const Project = styled.div`
-  grid-column: auto;
   background-color: #191919;
   border-radius: .3rem;
   display: flex;
@@ -36,6 +36,10 @@ export const Project = styled.div`
   justify-content: center;
   gap: 1rem;
   padding: 2rem;
+
+  @media screen and ( max-width: 1400px ){
+    width: 90%;
+  }
 
   a {
     text-decoration: none;
@@ -50,7 +54,6 @@ export const Project = styled.div`
 `
 
 export const Info = styled.div`
-  grid-column: auto;
   background-color: #191919;
   border-radius: .3rem;
   display: flex;
@@ -60,12 +63,28 @@ export const Info = styled.div`
   padding: 2rem;
   position: relative;
 
+  @media screen and ( max-width: 1400px ){
+    width: 90%;
+  }
+
   ol {
     align-self: flex-end;
     list-style: inside;
     display: flex;
     flex-direction: column;
     gap: .6rem;
+
+    @media (max-width: 650px) {
+      font-size: .8rem;
+    }
+  }
+
+  div { 
+    & > h2 {
+      @media screen and (max-width: 900px) {
+        font-size: 1.2rem;
+      }
+    }
   }
 
   a {
