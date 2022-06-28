@@ -57,6 +57,7 @@ export const Info = styled.div`
   background-color: #191919;
   border-radius: .3rem;
   display: flex;
+  font-weight: 500;
   flex-direction: column;
   justify-content: center;
   gap: .3rem;

@@ -46,11 +46,11 @@ function About() {
             <Container >
               <Title>Experience</Title>
               <Text>
-                • No much just a few local-projects mainly in <b>React</b>.
+                • A few local projects mainly in <b>React</b>.
                 <br></br>
-                I made a <a href='https://github.com/mr-ema/netflix_clone' target='_blank'>Netflix Clone</a> using <b>[ MongoDb, React, Express ]</b>.
+                • A <a href='https://github.com/mr-ema/netflix_clone' target='_blank'>Netflix Clone</a> using <b>[ MongoDb, React, Express ]</b>.
                 <br></br>
-                A <a href='https://nextjs-store-tawny.vercel.app/' target='_blank'>Store</a> with <b>NextJS</b>.
+                • A <a href='https://nextjs-store-tawny.vercel.app/' target='_blank'>Coffe Store</a> with <b>NextJS</b>.
 
                 <Note>You Can See The Rest Here
                   <a href='https://github.com/mr-ema?tab=repositories' target='_blank'>GitHub.</a>

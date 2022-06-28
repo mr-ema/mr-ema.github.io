@@ -114,7 +114,7 @@ export const Title = styled.h1`
 
 export const Text = styled.p`
   color: #bbb;
-  font-weight: 400;
+  font-weight: 500;
   line-height: 130%;
   text-align: left;
 
@@ -123,7 +123,7 @@ export const Text = styled.p`
   }
 
   a {
-    color: #ce3919;
+    color: #b8614f;
     font-weight: 800;
     text-decoration: none;
 
