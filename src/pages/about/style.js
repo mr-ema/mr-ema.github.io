@@ -121,6 +121,16 @@ export const Text = styled.p`
   @media (max-width: 600px) {
     font-size: 0.8rem;
   }
+
+  a {
+    color: #ce3919;
+    font-weight: 800;
+    text-decoration: none;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
 `
 
 export const ScrollBtn = styled.button`

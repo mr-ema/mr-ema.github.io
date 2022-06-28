@@ -23,7 +23,7 @@ function About() {
           <Container>
               <Title>About me</Title>
               <Text>
-                • My name is <b>Antonio</b>, I'm a <b>web developer</b>.
+                • My name is <b>Emanuel</b>, I'm a <b>web developer</b>.
                 I enjoy <b>code</b> and learn new things.
               </Text>
           </Container>
@@ -45,12 +45,16 @@ function About() {
             </Banner>
             <Container >
               <Title>Experience</Title>
-              <Text>• No much just a few local-projects mainly in <b>React</b>.
-                      I made a <b>Netflix Clone</b> using <b>[ MongoDb, React, Express ]</b>,
-                      and small projects: an info page about plants, animals and a mini-game with pure JS.
-                      <Note>Soon I will upload them to 
-                        <a href='https://github.com/mr-ema?tab=repositories' target='_blank'>GitHub.</a>
-                      </Note>
+              <Text>
+                • No much just a few local-projects mainly in <b>React</b>.
+                <br></br>
+                I made a <a href='https://github.com/mr-ema/netflix_clone' target='_blank'>Netflix Clone</a> using <b>[ MongoDb, React, Express ]</b>.
+                <br></br>
+                A <a href='https://nextjs-store-tawny.vercel.app/' target='_blank'>Store</a> with <b>NextJS</b>.
+
+                <Note>You Can See The Rest Here
+                  <a href='https://github.com/mr-ema?tab=repositories' target='_blank'>GitHub.</a>
+                </Note>
               </Text>
             </Container>
 
