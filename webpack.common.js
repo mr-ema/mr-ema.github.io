@@ -1,11 +1,11 @@
-const HtmlWebpackPlugin = require('html-webpack-plugin')
-const path = require('path')
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const path = require('path');
 
 module.exports = {
-  entry: './src/index.js',
+  entry: './src/index.tsx',
 
   output: {
-    filename: '[name].js',
+    filename: 'src/[name].js',
     path: path.resolve(__dirname, 'build'),
     clean: true
   },
@@ -13,39 +13,42 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.(js|jsx)$/,
+        test: /\.(ts|tsx)$/,
         exclude: /node_modules/,
-        include: path.resolve(__dirname, 'src'),
-        use: ['babel-loader'],
+        use: ['babel-loader']
+      },
+      {
+        test: /\.tsx?$/,
+        use: 'ts-loader',
+        exclude: /node_modules/,
       },
       {
         test: /\.css$/,
-        include: path.resolve(__dirname, './src/index.css'),
+        include: path.resolve(__dirname, './src/style.css'),
+        exclude: /node_modules/,
         use: ['style-loader', 'css-loader'],
       },
-      {
-        test: /\.(png)$/i,
+      {// * You Need To Define Assets Here And In custom.d.ts
+        test: /\.(png|jpg)$/i,
         loader: 'file-loader',
+        options:  {
+          // Custom Path To Save Assets When Build
+          name: 'public/assets/[hash].[ext]',
+        },
       }
     ]
   },
 
   resolve: {
     alias: {
-      Public: path.resolve(__dirname, 'public/'),
-      Components: path.resolve(__dirname, 'src/components/index.js'),
-      Pages: path.resolve(__dirname, 'src/pages/index.js'),
-      Errors: path.resolve(__dirname, 'src/errors/index.js')
+      // ! Important
+      // * To Add More Paths You Have To Added Here And In tsconfig.json
+      '@': path.resolve(__dirname, 'src'),
+      '@Components': path.resolve(__dirname, 'src/Components/index.ts'),
+      '@Public': path.resolve(__dirname, 'public'),
    },
-    extensions: ['.js', '.jsx']
+   extensions: ['.tsx', '.ts', '.js']
   },
-
-  plugins: [
-    new HtmlWebpackPlugin({
-      favicon: 'public/favicon.ico',
-      template: 'public/index.html'
-    })
-  ],
 
   optimization: {
     splitChunks: {
