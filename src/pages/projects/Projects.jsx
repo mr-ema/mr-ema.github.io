@@ -1,5 +1,5 @@
 import React from 'react'
-import project from './images/nextjs_store.png'
+import project from './images/next_store.png'
 import { Wrapper, Box, Project, Info } from './style'
 import { SiNextdotjs, SiMongodb, SiGithub } from 'react-icons/si'
 

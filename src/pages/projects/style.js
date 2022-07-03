@@ -51,6 +51,10 @@ export const Project = styled.div`
       opacity: .6;
     }
   }
+
+  img  {
+    max-width: 800px;
+  }
 `
 
 export const Info = styled.div`

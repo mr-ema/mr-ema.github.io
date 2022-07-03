@@ -15,16 +15,17 @@ module.exports = {
       {
         test: /\.(js|jsx)$/,
         exclude: /node_modules/,
-        use: ['babel-loader']
+        include: path.resolve(__dirname, 'src'),
+        use: ['babel-loader'],
       },
       {
         test: /\.css$/,
         include: path.resolve(__dirname, './src/index.css'),
-        use: ['style-loader', 'css-loader']
+        use: ['style-loader', 'css-loader'],
       },
       {
         test: /\.(png)$/i,
-        type: 'asset/resource'
+        loader: 'file-loader',
       }
     ]
   },
@@ -57,7 +58,7 @@ module.exports = {
         },
         vendor: {
           chunks: 'initial',
-          test: /[\\/]node_modules[\\/](react | react-dom | react-router-dom | styled-components)[\\/]/,
+          test: /[\\/]node_modules[\\/](react | react-dom)[\\/]/,
           name: 'vendor',
           enforce: true
         }
