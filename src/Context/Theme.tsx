@@ -18,11 +18,15 @@ export interface ThemeCtx extends ThemeMethod {
   dark: boolean,
 }
 
+interface Props {
+  children: React.ReactNode
+}
+
 // Create theme context
 // Use light theme as default theme
 const ThemeCtx = React.createContext<ThemeCtx | null>( {} as ThemeCtx );
 
-export function ThemeProvider({ children }: React.ReactNode) {
+export function ThemeProvider({ children }: Props) {
   // Current Theme State Default To 'dark'
   const [dark, setDark] = useLocalStorage<boolean>('darkMode', true);
   // Theme State Default To 'dark'

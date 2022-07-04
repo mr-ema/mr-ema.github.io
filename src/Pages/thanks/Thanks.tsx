@@ -8,7 +8,7 @@ export default function Thanks(): React.FunctionComponentElement<JSX.Element> {
   const goTo = useNavigate();
   
   React.useEffect(() => {
-    const back = setTimeout(() => goTo('/'), 4600);
+    const back = setTimeout(() => goTo('/'), 6000);
 
     return () => clearTimeout(back);
   }, [])
@@ -17,7 +17,7 @@ export default function Thanks(): React.FunctionComponentElement<JSX.Element> {
     <Wrapper>
       <MessageBox>
         <h1><span>T</span>han<span>ks !</span></h1>
-        <span>└► I will contact you as soon as possible. ◄┘</span>
+        <span>I will contact you as soon as possible.</span>
       </MessageBox>
       
       <ImageBox>

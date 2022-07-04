@@ -19,19 +19,19 @@ export default function Form( { close }: Props ): React.FunctionComponentElement
 
           <FormBox autoComplete='off' action='https://formsubmit.co/02b4fc6f6a8fd5c34d6ae644babfa5eb' method='POST' onInvalid={() => setInvalid(true)}>           
             <InputBox>
-              <Pront htmlFor='name'>►</Pront>
+              <Pront htmlFor='name'></Pront>
               <input  type='text' name='name' id='name' placeholder='Your Name' maxLength={50} required />
               {invalid && <span className='invalid'>(#)</span>}
             </InputBox>
            
             <InputBox>
-              <Pront htmlFor='email'>►</Pront>
+              <Pront htmlFor='email'></Pront>
               <input type='email' name='email' id='email' placeholder='Your Email Address' maxLength={64} required />
               {invalid && <span className='invalid'>(#)</span>}
             </InputBox>
 
             <InputBox>
-              <Pront htmlFor='message'>► </Pront>
+              <Pront htmlFor='message'></Pront>
               <Message name='message' id='message' rows={4} maxLength={200} placeholder='Short Message ( optional )'></Message>
             </InputBox>
 
@@ -50,11 +50,9 @@ export default function Form( { close }: Props ): React.FunctionComponentElement
 // STYLES
 const display = keyframes`
   0%{
-    transform: translate(0, 200px); 
     opacity:0;
   }
   100%{
-    transform: translate(0);
     opacity:1;
   }
 `
@@ -197,21 +195,28 @@ const InputBox = styled.div`
       -moz-appearance: none;
       appearance: none;
       border: 0;
-      border-radius: .3rem;
+      border-left: 4px solid ${props => props.theme.fg.terciary};
+      opacity: .69;
       background: #232323;
       color: #ccc;
+      font-size: 1rem;
       font-weight: 600;
       margin-top: -2px;
       position: relative;
-      padding: .3rem;
+      padding: .6rem .1rem;
       text-indent: 1rem;
       width: 100%;
 
-    & > input:focus, #email:focus {
+      @media screen and (max-width: 900px){
+        font-size: 0.86rem;
+      }
+
+    &:focus {
+      opacity: 1;
       color: #fff;
     }
 
-    & > input[type=text] {
+    &[type=text] {
       text-transform: capitalize;
     }
   }
@@ -221,11 +226,13 @@ const Message = styled.textarea`
     -moz-appearance: none;
     appearance: none;
     border: 0;
-    border-radius: .3rem;
+    border-left: 4px solid ${props => props.theme.fg.terciary};
     background: #232323;
     color: #ddd;
+    font-size: 1rem;
     font-weight: 600;
     margin-top: -2px;
+    opacity: .69;
     padding: .3rem;
     resize: none;
     padding-left: 1rem;
@@ -233,6 +240,10 @@ const Message = styled.textarea`
 
     @media (max-width: 600px) {
       font-size: 0.86rem;
+    }
+
+    &:focus {
+      opacity: 1;
     }
 `
 

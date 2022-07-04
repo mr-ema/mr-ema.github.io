@@ -1,12 +1,15 @@
 import React from 'react';
 import styled,  { keyframes } from 'styled-components';
-import { Wrapper } from '@/Styles/main';
+import { random, Wrapper } from '@/Styles/main';
 import { ContactLinks } from '@Components';
 import Form from './Form/Form';
-import avatar from '@Public/assets/github.png';
+import useWindowsSize from '@/Hooks/useWindowsSize';
 
 export default function Home(): React.FunctionComponentElement<JSX.Element> {
-  const [contactMe, setContactMe] = React.useState<boolean>(false)
+  const [contactMe, setContactMe] = React.useState<boolean>(false);
+  // * Generate an array to loop after and generate animations
+  const arrAnimation: number[] = Array.from(Array(9).keys()); // without keys all values would be undefined
+  const { width } = useWindowsSize();
 
   function handleClose(): void {
     setContactMe(!contactMe);
@@ -27,10 +30,23 @@ export default function Home(): React.FunctionComponentElement<JSX.Element> {
           <Technologies><b>[</b> React • NodeJs • MongoDB <b>]</b></Technologies>
           <ContactMe onClick={() => setContactMe(!contactMe)}>Contact Me</ContactMe>
         </Slogan>
-        <Avatar>
-          <img src={avatar} alt='logo' />
-        </Avatar>
       </InfoBox>
+
+      {
+        arrAnimation.map((value, idx) => {
+          if (value % 2 !== 0)  {
+            return <Animation key={idx} 
+            delay={random(1, 20)}
+            direction='alternate-reverse' 
+            randomPosition={random(0, width)}/>
+          }else {
+            return <Animation key={idx} 
+            delay={random(1, 20)}
+            direction='alternate' 
+            randomPosition={random(0, width)}/>
+          }
+        })
+      }
     </Wrapper>
     </>
   )
@@ -46,6 +62,17 @@ const typing = keyframes`
 const blink = keyframes`
   50% {
     border-color: transparent;
+  }
+`
+
+const move = keyframes`
+  from {
+    opacity: 0;
+    transform: translateY(0);
+  }
+  to {
+    opacity: .69;
+    transform: translateY(calc(100vh - 6vh));
   }
 `
 
@@ -108,15 +135,31 @@ const Technologies = styled.code`
   }
 `
 
-const Avatar = styled.div`
+const Animation = styled.div<{direction: string, randomPosition: number, delay: number}>`
+  background-color: ${props => props.theme.fg.terciary};
+  content: "01010101010";
   border: 0;
   display: flex;
   align-items: center;
   justify-content: center;
   position: absolute;
-  opacity: .3;
-  width: 50%;
-  height: 50%;
+  left: ${props => (props.randomPosition + 'px')};
+  top: 0;
+  opacity: 0;
+  width: 4px;
+  height: 6vh;
+  animation-name: ${move};
+  animation-duration: 2600ms;
+  animation-delay: ${props => (props.delay + 's')};
+  animation-iteration-count: infinite;
+  animation-direction: ${props => props.direction};
+  animation-fill-mode: none;
+  animation-timing-function: linear;
+
+  @media screen and (max-width: 600px){
+    width: 6px;
+    height: 6px;
+  }
 `
 
 const ContactMe = styled.button`

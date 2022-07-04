@@ -44,7 +44,7 @@ const Box = styled.section`
   display: flex;
   justify-content: center;
   flex-flow: row wrap-reverse;
-  gap: 1rem;
+  gap: 0;
   
   width: 100%;
   height: auto;
@@ -76,7 +76,9 @@ const Project = styled.div`
   }
 
   img  {
-    max-width: 800px;
+    border-radius: .69rem;
+    max-width: 700px;
+    height: auto;
   }
 `
 
