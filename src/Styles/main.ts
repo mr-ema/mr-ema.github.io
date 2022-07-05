@@ -13,21 +13,35 @@ export const Wrapper = styled.div`
   position: relative;
 
   @media (max-width: 900px) {
-    grid-column: 1/13;
-    padding: 0 3rem;
+    padding: 10px 1.69rem 60px 1.69rem;
     margin-left: 0;
   }
 `
 
-// Functions
-/**
- * Genere a random number
- * @params min: number, max: number
- * @return number
- */
-export function random(min: number, max: number): number {
-  min = Math.ceil(min);
-  max = Math.floor(max);
+export const Note = styled.span`
+display: block;
+background: #77b2ff2b;
+border-left: 3px solid ${props => props.theme.mode === 'light' ? '#005070' : '#77e6ff'};
+border-radius: 0 .3rem .3rem 0;
+color: ${props => props.theme.mode === 'light' ? '#005070' : '#77e6ff'};
+font-weight: 600;
+margin: 1rem 0;
+padding: .6rem;
+opacity: .8;
+width: fit-content;
 
-  return Math.floor(Math.random() *  (max - min + 1) + min)
+@media (max-width: 600px) {
+  font-size: 0.69rem;
 }
+
+& > a {
+  color: ${props => props.theme.mode === 'light' ? '#003449' : '#a3eeff'};
+  font-weight: 800;
+  margin-left: .3rem;
+  text-decoration: none;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}
+`

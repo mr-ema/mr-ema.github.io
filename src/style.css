@@ -1,5 +1,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600;800&display=swap');
 
+html {
+  scroll-behavior: smooth;
+}
+
 html, body, div, body, nav, h1, p, span, button, section {
   border: 0;
   margin: 0;
@@ -36,7 +40,6 @@ ul, ol {
 body {
   color: #222;
   font-family: 'Open Sans', sans-serif;
-  font-size: 100%;
   line-height: 1;
   overflow-x: hidden;
   -webkit-font-smoothing: antialiased;

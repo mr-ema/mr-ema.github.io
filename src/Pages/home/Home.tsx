@@ -1,6 +1,7 @@
 import React from 'react';
 import styled,  { keyframes } from 'styled-components';
-import { random, Wrapper } from '@/Styles/main';
+import { Wrapper } from '@/Styles/main';
+import { random } from '@/Helpers/RandomNumber';
 import { ContactLinks } from '@Components';
 import Form from './Form/Form';
 import useWindowsSize from '@/Hooks/useWindowsSize';

@@ -13,25 +13,24 @@ export default function Form( { close }: Props ): React.FunctionComponentElement
       <BgClip />
         <Container>
           <TopBar>
-            {invalid && <span className='required'>( # ) Required fields</span>}
             <Exit onClick={close}><span>{'×'}</span></Exit>
           </TopBar>
 
           <FormBox autoComplete='off' action='https://formsubmit.co/02b4fc6f6a8fd5c34d6ae644babfa5eb' method='POST' onInvalid={() => setInvalid(true)}>           
             <InputBox>
-              <Pront htmlFor='name'></Pront>
+              <label htmlFor='name'></label>
               <input  type='text' name='name' id='name' placeholder='Your Name' maxLength={50} required />
-              {invalid && <span className='invalid'>(#)</span>}
+              {invalid && <span className='invalid'>(required)</span>}
             </InputBox>
            
             <InputBox>
-              <Pront htmlFor='email'></Pront>
+              <label htmlFor='email'></label>
               <input type='email' name='email' id='email' placeholder='Your Email Address' maxLength={64} required />
-              {invalid && <span className='invalid'>(#)</span>}
+              {invalid && <span className='invalid'>(required)</span>}
             </InputBox>
 
             <InputBox>
-              <Pront htmlFor='message'></Pront>
+              <label htmlFor='message'></label>
               <Message name='message' id='message' rows={4} maxLength={200} placeholder='Short Message ( optional )'></Message>
             </InputBox>
 
@@ -58,7 +57,7 @@ const display = keyframes`
 `
 
 const BgClip = styled.div`
-  background: #ee666e;
+  background: ${props => props.theme.fg.terciary};
   clip-path: polygon(100% 100%, 0 0, 100% 0);
   position: fixed;
   top: 0;
@@ -68,7 +67,8 @@ const BgClip = styled.div`
 `
 
 const Wrapper = styled.div`
-  grid-column: 2/13;
+  grid-column: 1/13;
+  background-color: ${props => props.theme.bg.primary};
   display: flex;
   justify-content: center;
   align-items: center;
@@ -84,7 +84,7 @@ const Wrapper = styled.div`
 `
 
 const Container = styled.div`
-  background: #161616;
+  background: #191919;
   border: 0;
   border-radius: .2rem;
   display: flex;
@@ -113,16 +113,6 @@ const TopBar = styled.div`
   width: 100%;
   position: relative;
   padding: 1rem;
-
-  .required {
-    color: #ea9d41;
-    font-weight: 800;
-
-    @media (max-width: 600px) {
-      top: 6%;
-      font-size: .8rem;
-    }
-  }
 `
 
 const Exit = styled.button`
@@ -149,20 +139,6 @@ const Exit = styled.button`
   }
 `
 
-const Pront = styled.label`
-  color: #aaa;
-  font-size: 1.1rem;
-  font-weight: 600;
-
-  @media (max-width:900px) {
-    font-size: 1rem;
-  }
-
-  @media (max-width: 600px) {
-    font-size: 0.8rem;
-  }
-`
-
 const FormBox = styled.form`
     display: flex;
     flex-direction: column;
@@ -175,20 +151,26 @@ const FormBox = styled.form`
     @media (max-width: 600px) {
       gap: 40px;
     }
-
-    .invalid {
-      color: #ea9d41;
-      font-weight: 800;
-    }
 `
 
 const InputBox = styled.div`
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     gap: .6rem;
     position: relative;
+    overflow: hidden;
     height: auto;
     width: 100%;
+
+    .invalid {
+      font-size: .8rem;
+      color: #ea9d41;
+      font-weight: 800;
+
+      @media screen and (max-width: 900px){
+        font-size: .6rem;
+      }
+    }
 
     & > input, #email {
       -webkit-appearance: none;
@@ -248,7 +230,7 @@ const Message = styled.textarea`
 `
 
 const Send = styled.button`
-    background: #d6535a;
+    background: ${props => props.theme.fg.terciary};
     border: 0;
     border-radius: .2rem;
     color: #fff;

@@ -2,29 +2,31 @@ import React from 'react';
 import { RiArrowDownSLine, RiArrowUpSLine } from 'react-icons/ri';
 import styled, { keyframes } from 'styled-components';
 import { ContactLinks } from '@Components';
-import { scroll, fade } from '@/Helpers/Appear';
-import { Wrapper } from '@/Styles/main';
+import useScrollRefs from '@/Hooks/useScrollRefs';
+import { show } from '@/Helpers/Appear';
+import { Wrapper, Note } from '@/Styles/main';
 import desktop from '@Public/assets/desktop.png';
 import draw from '@Public/assets/draw.png';
 
 export default function About(): JSX.Element {
+  const { scroll, addToRefs } = useScrollRefs();
 
   React.useEffect(() => {
-    addEventListener('scroll', fade, {passive: true});
+    addEventListener('scroll', show, { passive: true });
 
-    return () => removeEventListener('scroll', fade);
+    return () => removeEventListener('scroll', show);
   },[])
 
   return (
     <Wrapper>
       <ContactLinks />
 
-      <InfoBox >
+      <InfoBox ref={addToRefs}>
         <Info className='appear'>
           <Container>
               <Title>About me</Title>
               <Text>
-                • My name is <b>Emanuel</b>, I'm a <b>web developer</b>.
+                My name is <b>Emanuel</b>, I'm a <b>web developer</b>.
                 I enjoy <b>code</b> and learn new things.
               </Text>
           </Container>
@@ -33,13 +35,14 @@ export default function About(): JSX.Element {
             <img src={draw} alt='draw'/>
           </Banner>
       
-          <ScrollBtn alignLeft onClick={ () => scroll('down')}>
+          <ScrollBtn alignLeft onClick={ () => scroll(1) }>
             <RiArrowDownSLine/>
           </ScrollBtn>
+
         </Info>
       </InfoBox>
 
-      <InfoBox >
+      <InfoBox ref={addToRefs}>
         <Info reverse className='hide'>
             <Banner>
               <img src={desktop} alt='desktop'/>
@@ -47,11 +50,11 @@ export default function About(): JSX.Element {
             <Container >
               <Title>Experience</Title>
               <Text>
-                • A few local projects mainly in <b>React</b>.
+                A few local projects mainly in <b>React</b>.
                 <br></br>
-                • A <a href='https://github.com/mr-ema/netflix_clone' target='_blank'>Netflix Clone</a> using <b>[ MongoDb, React, Express ]</b>.
+                A <a href='https://github.com/mr-ema/netflix_clone' target='_blank'>Netflix Clone</a> using <b>[ MongoDb, React, Express ]</b>.
                 <br></br>
-                • A <a href='https://nextjs-store-tawny.vercel.app/' target='_blank'>Coffe Store</a> with <b>NextJS</b>.
+                A <a href='https://nextjs-store-tawny.vercel.app/' target='_blank'>Coffe Store</a> with <b>NextJS</b>.
 
                 <Note>You Can See The Rest Here
                   <a href='https://github.com/mr-ema?tab=repositories' target='_blank'>GitHub.</a>
@@ -59,7 +62,7 @@ export default function About(): JSX.Element {
               </Text>
             </Container>
 
-            <ScrollBtn onClick={ () => scroll('up')}>
+            <ScrollBtn onClick={ () => scroll(0)}>
               <RiArrowUpSLine/>
             </ScrollBtn>
         </Info>
@@ -85,7 +88,7 @@ const InfoBox = styled.div`
   height: 100vh;
   width: 80%;
 
-  @media (max-width: 900px) {
+  @media screen and (max-width: 900px) {
     width: 100%;
   }
 
@@ -149,7 +152,7 @@ const Container = styled.section`
 
 const Title = styled.h1`
   color: ${props => props.theme.fg.terciary};
-  font-size: 2.6rem;
+  font-size: 2.3rem;
   font-weight: 800;
   margin: 1rem 0;
   text-transform: uppercase;
@@ -160,7 +163,7 @@ const Title = styled.h1`
 
   
   @media (max-width: 600px) {
-    font-size: 1.36rem;
+    font-size: 1.3rem;
   }
 `
 
@@ -171,7 +174,7 @@ const Text = styled.p`
   text-align: left;
 
   @media (max-width: 600px) {
-    font-size: 0.8rem;
+    font-size: 0.69rem;
   }
 
   a {
@@ -203,33 +206,5 @@ const ScrollBtn = styled.button<{alignLeft?: boolean}>`
 
   @media (max-width: 900px) {
     left: 2%;
-  }
-`
-
-const Note = styled.span`
-  display: block;
-  background: #77b2ff2b;
-  border-left: 3px solid ${props => props.theme.mode === 'light' ? '#005070' : '#77e6ff'};
-  border-radius: 0 .3rem .3rem 0;
-  color: ${props => props.theme.mode === 'light' ? '#005070' : '#77e6ff'};
-  font-weight: 600;
-  margin: 1rem 0;
-  padding: .6rem;
-  opacity: .8;
-  width: fit-content;
-
-  @media (max-width: 600px) {
-    font-size: 0.8rem;
-  }
-
-  & > a {
-    color: ${props => props.theme.mode === 'light' ? '#003449' : '#a3eeff'};
-    font-weight: 800;
-    margin-left: .3rem;
-    text-decoration: none;
-
-    &:hover {
-      text-decoration: underline;
-    }
   }
 `

@@ -10,9 +10,8 @@ export default function Projects(): JSX.Element {
       <Box>
         <Project>
           <a href='https://nextjs-store-mr-ema.vercel.app/' target='_blank'>
-            <img src={project} alt='Nextjs-Store Project'/>
+            <img src={project} alt='Nextjs-Store Live Demo'/>
           </a>
-          <a href='https://nextjs-store-mr-ema.vercel.app/' target='_blank'>Click Me</a>
         </Project>
         <Info>
           <span className='tecnos'>
@@ -34,7 +33,6 @@ export default function Projects(): JSX.Element {
           <a href='https://github.com/mr-ema/nextjs-store/' target='_blank'><SiGithub/></a>
         </Info>
       </Box>
-
     </Wrapper>
   )
 }
@@ -43,8 +41,9 @@ const Box = styled.section`
   background: none;
   display: flex;
   justify-content: center;
-  flex-flow: row wrap-reverse;
+  flex-flow: row wrap;
   gap: 0;
+  margin-bottom: 1.69rem;
   
   width: 100%;
   height: auto;
@@ -57,18 +56,24 @@ const Project = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 1rem;
-  padding: 2rem;
+  gap: .69rem;
+  padding: 1rem;
 
   @media screen and ( max-width: 1400px ){
     width: 90%;
   }
+  @media (max-width: 900px) {
+      width: 100%;
+  }
 
   a {
-    text-decoration: none;
+    background-color: ${props => props.theme.bg.secundary};
+    border-radius: .69rem;
     color: ${props => props.theme.fg.terciary};
     font-weight: 600;
+    max-width: 650px;
     opacity: 1;
+    text-decoration: none;
 
     &:hover {
       opacity: .6;
@@ -77,7 +82,7 @@ const Project = styled.div`
 
   img  {
     border-radius: .69rem;
-    max-width: 700px;
+    width: 100%;
     height: auto;
   }
 `
@@ -87,20 +92,28 @@ const Info = styled.div`
   border-radius: .3rem;
   display: flex;
   font-weight: 500;
+  font-size: 1rem;
   flex-direction: column;
   justify-content: center;
   gap: .3rem;
   padding: 2rem;
   position: relative;
 
-  @media screen and ( max-width: 1400px ){
+  @media screen and ( max-width: 1400px ) {
     width: 90%;
+  }
+  @media (max-width: 900px) {
+    width: 100%;
+  }
+  @media (max-width: 650px) {
+      font-size: .8rem;
   }
 
   ol {
     align-self: flex-end;
     list-style: inside;
     display: flex;
+    font-size: 1rem;
     flex-direction: column;
     gap: .6rem;
 
@@ -119,11 +132,13 @@ const Info = styled.div`
   }
 
   a {
-    align-self: flex-end;
     text-decoration: none;
     color: ${props => props.theme.fg.terciary};
     font-weight: 600;
-    font-size: 1.6rem;
+    font-size: 2.6rem;
+    position: absolute;
+    bottom: .5rem;
+    right: 1rem;
     opacity: 1;
 
     &:hover {
@@ -133,7 +148,7 @@ const Info = styled.div`
 
   .tecnos {
     color: ${props => props.theme.fg.secundary};
-    font-size: 1.6rem;
+    font-size: 2rem;
     position: absolute;
     top: 1rem;
     right: 1rem;
