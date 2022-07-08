@@ -2,7 +2,7 @@ import React from 'react';
 import { RiArrowDownSLine, RiArrowUpSLine } from 'react-icons/ri';
 import styled, { keyframes } from 'styled-components';
 import { ContactLinks } from '@Components';
-import useScrollRefs from '@/Hooks/useScrollRefs';
+import { useScrollRefs } from '@/Hooks/useScrollRefs';
 import { show } from '@/Helpers/Appear';
 import { Wrapper, Note } from '@/Styles/main';
 import desktop from '@Public/assets/desktop.png';
@@ -14,7 +14,7 @@ export default function About(): JSX.Element {
   React.useEffect(() => {
     addEventListener('scroll', show, { passive: true });
 
-    return () => removeEventListener('scroll', show);
+    return () => removeEventListener('scroll', show );
   },[])
 
   return (

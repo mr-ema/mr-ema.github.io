@@ -7,15 +7,12 @@ type Window = {
 
 function getDimensions(): Window  {
   const { innerWidth: width, innerHeight: height } = window;
-
-  return  {
-    width,
-    height
-  }
+  
+  return  { width, height}
 }
 
-export default function useWindowsSize(): Window {
-  const [dimensions, setDimensions] = React.useState<Window>(getDimensions());
+export function useWindowsSize(): Window {
+  const [dimensions, setDimensions] = React.useState<Window>( getDimensions() );
 
   React.useEffect(() => {
     function handleResize() {
@@ -28,3 +25,4 @@ export default function useWindowsSize(): Window {
 
   return dimensions;
 }
+

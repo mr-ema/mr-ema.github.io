@@ -4,12 +4,13 @@
  * @return void
  */
 export function show(): void {
-  const scroll: number = scrollY;
+  const offsetDoc = document.body.getBoundingClientRect().top;
   const elements: NodeListOf<Element> = document.querySelectorAll('.hide');
-  elements.forEach( e => {
-    const position = e.getBoundingClientRect();
-      if ( scroll >= ( position.height - position.top ) ) {
-        e.classList.replace('hide', 'appear');
+
+  elements.forEach(el => {
+    const position = el.getBoundingClientRect().top;
+      if ( (scrollY - offsetDoc) >= position ) {
+        el.classList.replace('hide', 'appear');
       }
   })
 }

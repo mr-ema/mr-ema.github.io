@@ -71,12 +71,16 @@ const Project = styled.div`
     border-radius: .69rem;
     color: ${props => props.theme.fg.terciary};
     font-weight: 600;
-    max-width: 650px;
+    width: 650px;
     opacity: 1;
     text-decoration: none;
 
     &:hover {
       opacity: .6;
+    }
+
+    @media screen and (max-width: 900px) {
+      width: 100%;
     }
   }
 

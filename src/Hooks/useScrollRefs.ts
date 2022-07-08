@@ -1,11 +1,10 @@
 import React from 'react';
 
-export default function useScrollRefs() {
+export function useScrollRefs() {
   const scrollRef = React.useRef<HTMLElement[]>([]);
   
   function scroll(index: number): void {
     scrollRef.current[index].scrollIntoView();
-    console.log(scrollRef)
   }
 
   function addToRefs(element: React.ElementRef<any>): void  {

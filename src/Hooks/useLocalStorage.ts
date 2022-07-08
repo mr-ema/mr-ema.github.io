@@ -1,6 +1,6 @@
 import React from 'react';
 
-export default function useLocalStorage<Type>(key: string, fallbackState: Type) {
+export function useLocalStorage<Type>(key: string, fallbackState: Type) {
   const [value, setValue] = React.useState<Type>(() => initialState() )
 
   function initialState(): Type {

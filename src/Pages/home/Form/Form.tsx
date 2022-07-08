@@ -84,7 +84,8 @@ const Wrapper = styled.div`
 `
 
 const Container = styled.div`
-  background: #191919;
+  background: ${props => props.theme.bg.primary};
+  box-shadow: 0px 0px 9px 3px #00000039;
   border: 0;
   border-radius: .2rem;
   display: flex;
@@ -179,8 +180,8 @@ const InputBox = styled.div`
       border: 0;
       border-left: 4px solid ${props => props.theme.fg.terciary};
       opacity: .69;
-      background: #232323;
-      color: #ccc;
+      background: ${props => props.theme.bg.secundary};
+      color: ${props => props.theme.fg.primary};
       font-size: 1rem;
       font-weight: 600;
       margin-top: -2px;
@@ -195,7 +196,6 @@ const InputBox = styled.div`
 
     &:focus {
       opacity: 1;
-      color: #fff;
     }
 
     &[type=text] {
@@ -209,8 +209,8 @@ const Message = styled.textarea`
     appearance: none;
     border: 0;
     border-left: 4px solid ${props => props.theme.fg.terciary};
-    background: #232323;
-    color: #ddd;
+    background: ${props => props.theme.bg.secundary};
+    color: ${props => props.theme.fg.primary};
     font-size: 1rem;
     font-weight: 600;
     margin-top: -2px;

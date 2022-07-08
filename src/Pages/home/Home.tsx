@@ -4,12 +4,13 @@ import { Wrapper } from '@/Styles/main';
 import { random } from '@/Helpers/RandomNumber';
 import { ContactLinks } from '@Components';
 import Form from './Form/Form';
-import useWindowsSize from '@/Hooks/useWindowsSize';
+import { useWindowsSize } from '@/Hooks/useWindowsSize';
 
 export default function Home(): React.FunctionComponentElement<JSX.Element> {
   const [contactMe, setContactMe] = React.useState<boolean>(false);
   // * Generate an array to loop after and generate animations
-  const arrAnimation: number[] = Array.from(Array(9).keys()); // without keys all values would be undefined
+  // ! Avoid numbers over 12 for low cpu devices
+  const arrAnimation: number[] = Array.from(Array(6).keys()); // without keys all values would be undefined
   const { width } = useWindowsSize();
 
   function handleClose(): void {
@@ -37,14 +38,14 @@ export default function Home(): React.FunctionComponentElement<JSX.Element> {
         arrAnimation.map((value, idx) => {
           if (value % 2 !== 0)  {
             return <Animation key={idx} 
-            delay={random(1, 20)}
+            delay={random(1, 10)}
             direction='alternate-reverse' 
-            randomPosition={random(0, width)}/>
+            randomPosition={random((width / 2), width)}/>
           }else {
             return <Animation key={idx} 
-            delay={random(1, 20)}
+            delay={random(1, 10)}
             direction='alternate' 
-            randomPosition={random(0, width)}/>
+            randomPosition={random(idx, (width / 2))}/>
           }
         })
       }
@@ -72,8 +73,9 @@ const move = keyframes`
     transform: translateY(0);
   }
   to {
+    border-radius: 50%;
     opacity: .69;
-    transform: translateY(calc(100vh - 6vh));
+    transform: translateY(calc(100vh - 9px));
   }
 `
 
@@ -138,7 +140,6 @@ const Technologies = styled.code`
 
 const Animation = styled.div<{direction: string, randomPosition: number, delay: number}>`
   background-color: ${props => props.theme.fg.terciary};
-  content: "01010101010";
   border: 0;
   display: flex;
   align-items: center;
@@ -147,8 +148,9 @@ const Animation = styled.div<{direction: string, randomPosition: number, delay: 
   left: ${props => (props.randomPosition + 'px')};
   top: 0;
   opacity: 0;
-  width: 4px;
-  height: 6vh;
+  width: 6px;
+  height: 6px;
+  
   animation-name: ${move};
   animation-duration: 2600ms;
   animation-delay: ${props => (props.delay + 's')};
@@ -158,8 +160,8 @@ const Animation = styled.div<{direction: string, randomPosition: number, delay: 
   animation-timing-function: linear;
 
   @media screen and (max-width: 600px){
-    width: 6px;
-    height: 6px;
+    width: 3px;
+    height: 3px;
   }
 `
 
