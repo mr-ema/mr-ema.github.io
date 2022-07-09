@@ -7,7 +7,7 @@
   "private": true,
   "scripts": {
     "build": "webpack --config webpack.prod.js",
-    "start:dev": "webpack serve --open --config webpack.dev.js --hot",
+    "start:dev": "webpack serve --open --config webpack.dev.js",
     "predeploy": "npm run build",
     "deploy": "gh-pages -d build"
   },

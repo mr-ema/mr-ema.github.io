@@ -20,13 +20,13 @@ export default function Form( { close }: Props ): React.FunctionComponentElement
             <InputBox>
               <label htmlFor='name'></label>
               <input  type='text' name='name' id='name' placeholder='Your Name' maxLength={50} required />
-              {invalid && <span className='invalid'>(required)</span>}
+              {invalid && <span className='invalid'>required</span>}
             </InputBox>
            
             <InputBox>
               <label htmlFor='email'></label>
               <input type='email' name='email' id='email' placeholder='Your Email Address' maxLength={64} required />
-              {invalid && <span className='invalid'>(required)</span>}
+              {invalid && <span className='invalid'>required</span>}
             </InputBox>
 
             <InputBox>
@@ -145,12 +145,12 @@ const FormBox = styled.form`
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    gap: 80px;
+    gap: 30px;
 
     height: 100%;
 
     @media (max-width: 600px) {
-      gap: 40px;
+      gap: 20px;
     }
 `
 

@@ -16,6 +16,7 @@ module.exports = merge(common, {
   
   devServer: {
     static: '.build',
-    historyApiFallback: true
+    historyApiFallback: true,
+    hot: true,
   }
 })

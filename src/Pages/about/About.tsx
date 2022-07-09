@@ -203,8 +203,4 @@ const ScrollBtn = styled.button<{alignLeft?: boolean}>`
   &:hover {
     opacity: 0.6;
   }
-
-  @media (max-width: 900px) {
-    left: 2%;
-  }
 `
