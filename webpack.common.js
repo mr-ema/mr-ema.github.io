@@ -5,21 +5,16 @@ module.exports = {
 
   output: {
     filename: 'src/[name].js',
-    path: path.resolve(__dirname, 'build'),
+    path: path.resolve(__dirname, '.build'),
     clean: true
   },
 
   module: {
     rules: [
       {
-        test: /\.(ts|tsx)$/,
-        exclude: /node_modules/,
-        use: ['babel-loader']
-      },
-      {
         test: /\.tsx?$/,
-        use: 'ts-loader',
         exclude: /node_modules/,
+        use: ['babel-loader', 'ts-loader'],
       },
       {
         test: /\.css$/,

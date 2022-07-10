@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-    "outDir": "./build/",
+    "outDir": ".build",
     "baseUrl": ".",
     
     "noImplicitAny": true,
@@ -29,5 +29,5 @@
   },
   
   "include": ["src/**/*.tsx", "custom.d.ts", "src/**/*.ts"],
-  "exclude": ["dist", "build", "node_modules"]
+  "exclude": ["node_modules"]
 }
