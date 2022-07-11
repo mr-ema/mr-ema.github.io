@@ -27,7 +27,7 @@ export default function Home(): React.FunctionComponentElement<JSX.Element> {
       <ContactLinks />
       <InfoBox>
         <Slogan>
-          <Name>Antonio Lombardo</Name>
+          <Name>Emanuel Vargas</Name>
           <Info>Web Developer</Info>
           <Technologies><b>[</b> React • NodeJs • MongoDB <b>]</b></Technologies>
           <ContactMe onClick={() => setContactMe(!contactMe)}>Contact Me</ContactMe>
@@ -112,6 +112,7 @@ const Name = styled.h1`
   font-weight: 800;
   white-space: nowrap;
   width: 100%;
+  padding: 0 0 .4rem 0;
   overflow: hidden;
 
   @media (max-width: 650px) {
