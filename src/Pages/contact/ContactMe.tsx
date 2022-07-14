@@ -15,7 +15,7 @@ export default function ContactMe(): JSX.Element {
 
   return (
     <Wrapper jc='flex-start'>
-      <Form onSubmit={(e) => {playAnimation(e); setTimeout(() => setSend(true), 200) }} autoComplete='off' action='https://formsubmit.co/02b4fc6f6a8fd5c34d6ae644babfa5eb' method='POST'>
+      <Form onSubmit={(e) => {playAnimation(e); setTimeout(() => setSend(true), 100) }} autoComplete='off' action='https://formsubmit.co/02b4fc6f6a8fd5c34d6ae644babfa5eb' method='POST'>
         <h1>Send Me A Mail</h1>
 
         <InputBox>
