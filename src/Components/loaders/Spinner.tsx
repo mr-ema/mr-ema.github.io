@@ -1,6 +1,6 @@
 import React from 'react';
-import { Wrapper } from '@/Styles/main';
 import styled, { keyframes } from 'styled-components';
+import { Wrapper } from '@/Styles/Main';
 
 export default function Spinner(): JSX.Element {
   return (

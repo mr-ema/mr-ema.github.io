@@ -1,6 +1,6 @@
 import React from 'react';
 import { ThemeProvider as StyledProvider } from 'styled-components';
-import { Theme } from '@/Styles/theme';
+import { Theme } from '@/Styles/Theme';
 import { useLocalStorage } from '@/Hooks/useLocalStorage';
 /**
  * * React 18

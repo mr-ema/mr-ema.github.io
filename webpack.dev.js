@@ -8,7 +8,6 @@ module.exports = merge(common, {
   devtool: 'eval-cheap-module-source-map',
 
   plugins: [
-
     new HtmlWebpackPlugin({
       favicon: 'public/favicon.ico',
       template: 'public/index.html',

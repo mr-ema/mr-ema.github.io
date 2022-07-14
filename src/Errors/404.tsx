@@ -1,9 +1,12 @@
 import React from 'react';
 import styled from 'styled-components';
-import { VscBracketError } from 'react-icons/vsc';
 import { Link } from 'react-router-dom';
+import { VscBracketError } from 'react-icons/vsc';
+import { Wrapper } from '@/Styles/Main';
+import { hingeAnimation, rollInAnimation } from '@/Styles/Animations';
 
-export default function NoPage(): JSX.Element {
+
+export default function _404_(): JSX.Element {
   return (
     <Wrapper>
       <Message>
@@ -21,23 +24,11 @@ export default function NoPage(): JSX.Element {
 }
 
 // STYLES
-const Wrapper = styled.div`
-  grid-column: 1/13;
-  background-color: #191919;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 10%;
-  padding: 2rem;
-  box-sizing: border-box;
-
-  @media (max-width: 900px) {
-    gap: 5%;
-  }
-`
-
 const Message = styled.div`
+  animation: ${rollInAnimation};
+  animation-duration: 800ms;
+  animation-fill-mode: forwards;
+
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -45,26 +36,20 @@ const Message = styled.div`
   gap: 2rem;
 
   & > h1 {
-    color: #ddd;
+    color: ${props => props.theme.fg.primary};
     font-size: 7vw;
-
-    @media (max-width: 600px) {
-      font-size: 2.3rem;
-    }
+    @media (max-width: 600px){ font-size: 2.3rem; }
   }
 
   & > a {
     border: 0;
-    border-left: .2rem solid #ff006e;
-    border-right: .2rem solid #ff006e;
-    color: #ddd;
+    border-left: .2rem solid ${props => props.theme.fg.terciary};
+    border-right: .2rem solid ${props => props.theme.fg.terciary};
+    color: ${props => props.theme.fg.primary};
     font-weight: 800;
     padding: .3rem .9rem;
     text-decoration: none;
-
-    @media(max-width: 900px) {
-      font-size: 0.7rem;
-    }
+    @media(max-width: 900px){ font-size: 0.7rem; }
   }
 
   & > a:hover {
@@ -72,21 +57,22 @@ const Message = styled.div`
   }
 
   & > h1 > span {
-    color: #ee666e;
+    color: ${props => props.theme.fg.terciary};
   }
 
   & > span {
-    color: #aaa;
-    font-size: 1.2rem;
-    font-weight: 600;
-
-    @media (max-width: 900px) {
-      font-size: 0.9rem;
-    }
+    color: ${props => props.theme.fg.secundary};
+    font-size: 1.6rem;
+    font-weight: 700;
+    @media (max-width: 900px){ font-size: 1rem; }
   }
 `
 
 const Banner = styled.span`
-  color: #ee666e;
+  animation: ${hingeAnimation};
+  animation-duration: 2600ms;
+  animation-delay: 1000ms;
+  animation-fill-mode: forwards;
+  color: ${props => props.theme.fg.terciary};
   font-size: 16vw;
 `

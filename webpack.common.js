@@ -5,6 +5,7 @@ module.exports = {
 
   output: {
     filename: 'src/[name].js',
+    publicPath: '/',
     path: path.resolve(__dirname, '.build'),
     clean: true
   },
@@ -23,7 +24,7 @@ module.exports = {
         use: ['style-loader', 'css-loader'],
       },
       {// * You Need To Define Assets Here And In custom.d.ts
-        test: /\.(png|jpg)$/i,
+        test: /\.(png|svg)$/i,
         loader: 'file-loader',
         options:  {
           // Custom Path To Save Assets When Build
@@ -38,8 +39,8 @@ module.exports = {
       // ! Important
       // * To Add More Paths You Have To Added Here And In tsconfig.json
       '@': path.resolve(__dirname, 'src'),
-      '@Components': path.resolve(__dirname, 'src/Components/index.ts'),
       '@Public': path.resolve(__dirname, 'public'),
+      "@Pages": path.resolve(__dirname, 'src/Pages/index.ts')
    },
    extensions: ['.tsx', '.ts', '.js']
   },

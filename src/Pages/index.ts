@@ -1,9 +1,10 @@
+import Home from './Home';
 import About from './about/About';
-import Home from './home/Home';
-import Projects from './projects/Projects';
-import Thanks from './thanks/Thanks';
+import Blog from './blog/Blog';
+import ShowCase from './showCase/ShowCase';
+import ContactMe from './contact/ContactMe';
 
 export {
-  About, Home, Projects,
-  Thanks,
+  Home, About, Blog,
+  ShowCase, ContactMe
 }

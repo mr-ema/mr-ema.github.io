@@ -1,112 +1,65 @@
 import React from 'react';
+import { NavLink, Outlet } from 'react-router-dom';
 import styled from 'styled-components';
-import { NavLink, Outlet } from 'react-router-dom'
-import {  MdHomeFilled, MdAccountBox, MdCode } from 'react-icons/md';
-import ToggleTheme from './ToggleTheme';
+import { Image } from '@/Styles/Main';
 import logo from '@Public/logo.png';
+import ToggleTheme from './ToggleTheme';
 
-export default function NavBar(): JSX.Element {
-  return (
+export default function NavBar(): JSX.Element  {
+  return  (
     <>
-      <Wrapper>
-        <Logo>
-          <img src={logo} alt='logo'/>
-        </Logo>
-
-        <Links>
-          <li>
-            <NavLink to={'/me'} className='link'>
-              <Icon><MdAccountBox/></Icon>
-            </NavLink>
-          </li>
-          <li>
-            <NavLink to={'/'} className='link'>
-              <Icon><MdHomeFilled/></Icon>
-            </NavLink>
-          </li>
-          <li>
-            <NavLink to={'/projects'} className='link'>
-              <Icon><MdCode/></Icon>
-            </NavLink>
-          </li>
-      {/*     <li>
-            <NavLink to={'/games'} className='link'>
-              <Icon><MdOutlineVideogameAsset/></Icon>
-            </NavLink>
-          </li> */}
-        </Links>
+      <Menu>
+        <Image src={logo} alt='Logo' className='logo'/>
+        <ul>
+          <SLink to="/">Home</SLink>
+          <SLink to="/showCase">Show Case</SLink>
+          <SLink to="/about">About</SLink> 
+        </ul>
         <ToggleTheme />
-      </Wrapper>
-      <Outlet/>
+      </Menu>
+
+      <Outlet />
     </>
   )
 }
 
 // STYLES
-const Wrapper = styled.nav`
-  background-color: ${props => props.theme.bg.secundary};
+const Menu = styled.nav`
+  grid-column: 1/13;
+  background-color: ${props => props.theme.bg.primary};
+  background: ${props => props.theme.bg.gradient};
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: .6rem;
-  position: fixed;
-  
-  max-width: 100px;
-  height: 100vh;
-  z-index: 99;
-
-  @media (max-width: 900px) {
-    grid-column: 1/13;
-    bottom: 0;
-    flex-direction: row;
-    height: 60px;
-    min-width: 100vw;
-  }
-`
-
-const Logo = styled.div`
-  border: 0;
-  display: flex;
-  align-items: center;
   justify-content: center;
-
-  max-height: 45px;
-  max-width: 45px;
-`
-
-const Links = styled.ul`
-  display: flex;
   align-items: center;
-  justify-content: center;
-  flex-direction: column;
-  gap: 2rem;
-  padding: 0;
-  width: auto;
-  height: 100%;
 
+  height: 100px;
 
-  @media (max-width: 900px) {
+  & > ul {
+    display: flex;
     flex-direction: row;
-    width: 100%;
-    height: auto;
+    justify-content: center;
+    align-items: center;
+    margin-left: -60px;
+    gap: 1rem;
+
+    width: 80%;
+
+    @media screen and (max-width: 900px){  margin-left: -50px; }
+    @media screen and (max-width: 600px){  margin-left: -40px; }
   }
 
-  .link {
-    display: block;
-    color: ${props => props.theme.fg.primary};
-    opacity: .69;
-  }
-
-  .link:hover {
-    opacity: .39;
-  }
-
-  .active {
-    color: ${props => props.theme.fg.terciary};
-  }
+  @media screen and (max-width: 900px){ padding: 0 2rem; }
 `
 
-const Icon = styled.span`
-  display: flex;
-  font-size: 2rem;
+const SLink = styled(NavLink)`
+  color: ${props => props.theme.fg.primary};
+  font-weight: 600;
+  opacity: .69;
+  text-decoration: none;
+
+  &:hover, &.active {
+    opacity: 1;
+  }
+
+  @media screen and (max-width: 900px){ font-size: .8rem; }
 `

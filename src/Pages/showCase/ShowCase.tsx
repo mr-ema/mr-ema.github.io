@@ -1,10 +1,11 @@
 import React from 'react';
 import styled from 'styled-components';
 import { SiNextdotjs, SiMongodb, SiGithub } from 'react-icons/si';
-import { Wrapper } from '@/Styles/main';
-import project from '@Public/assets/next_store.png';
+import { Wrapper } from '@/Styles/Main';
+import project from '@Public/assets/images/showCase/next_store.png';
+import { bounceInAnimation } from '@/Styles/Animations';
 
-export default function Projects(): JSX.Element {
+export default function ShowCase(): JSX.Element {
   return (
     <Wrapper>
       <Box>
@@ -17,19 +18,7 @@ export default function Projects(): JSX.Element {
           <span className='tecnos'>
             <SiNextdotjs/> <SiMongodb/>
           </span>
-          <div>
-            <h2>NextJs Store</h2>
-            <span>First e-commerce and NextJs project.</span>
-          </div>
-          <div>
-          <h3>Made With:</h3>
-          <ol>
-            <li>NextJs</li>
-            <li>Mongoose</li>
-            <li>Webpay</li>
-            <li>Yup for form validation</li>
-          </ol>
-          </div>
+         
           <a href='https://github.com/mr-ema/nextjs-store/' target='_blank'><SiGithub/></a>
         </Info>
       </Box>
@@ -38,14 +27,21 @@ export default function Projects(): JSX.Element {
 }
 
 const Box = styled.section`
+  animation-name: ${bounceInAnimation};
+  animation-duration: 1600ms;
+  animation-iteration-count: 1;
+  animation-play-state: running;
+  animation-fill-mode: forwards;
+
   background: none;
+  box-shadow: 6px 6px 16px 3px ${props => props.theme.mode === 'light' ? '#00000010': '#00000020' };
   display: flex;
-  justify-content: center;
+  justify-content: space-around;
   flex-flow: row wrap;
   gap: 0;
   margin-bottom: 1.69rem;
   
-  width: 100%;
+  width: auto;
   height: auto;
 `
 
@@ -110,29 +106,7 @@ const Info = styled.div`
     width: 100%;
   }
   @media (max-width: 650px) {
-      font-size: .8rem;
-  }
-
-  ol {
-    align-self: flex-end;
-    list-style: inside;
-    display: flex;
-    font-size: 1rem;
-    flex-direction: column;
-    gap: .6rem;
-
-    @media (max-width: 650px) {
-      font-size: .8rem;
-    }
-  }
-
-  div { 
-    color: ${props => props.theme.fg.primary};
-    & > h2 {
-      @media screen and (max-width: 900px) {
-        font-size: 1.2rem;
-      }
-    }
+    font-size: .8rem;
   }
 
   a {
@@ -155,6 +129,6 @@ const Info = styled.div`
     font-size: 2rem;
     position: absolute;
     top: 1rem;
-    right: 1rem;
+    left: 1rem;
   }
 `

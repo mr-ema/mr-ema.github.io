@@ -1,3 +1,4 @@
+
 import React from 'react';
 import styled from 'styled-components';
 import { FiSun, FiMoon } from 'react-icons/fi';
@@ -28,10 +29,8 @@ const ToggleBtn = styled.button`
   justify-content: center;
   align-items: center;
   font-size: 2rem;
-  margin-bottom: 2rem;
 
-  @media screen and (max-width: 900px) {
-    margin-bottom: 0;
-    margin-right: 1rem;
-  }
+  height: 100px;
+
+  @media screen and (max-width: 900px){ font-size: 1.6rem; }
 `
