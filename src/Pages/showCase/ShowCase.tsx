@@ -34,6 +34,7 @@ const Box = styled.section`
   animation-fill-mode: forwards;
 
   background: none;
+  border-radius: .6rem;
   box-shadow: 6px 6px 16px 3px ${props => props.theme.mode === 'light' ? '#00000010': '#00000020' };
   display: flex;
   justify-content: space-around;
@@ -72,7 +73,7 @@ const Project = styled.div`
     text-decoration: none;
 
     &:hover {
-      opacity: .6;
+      opacity: .8;
     }
 
     @media screen and (max-width: 900px) {

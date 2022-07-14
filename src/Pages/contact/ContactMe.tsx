@@ -1,9 +1,10 @@
 import React from 'react';
 import { useSearchParams } from 'react-router-dom';
 import styled from 'styled-components';
+import { MdPersonOutline, MdMail } from 'react-icons/md';
 import { Wrapper } from '@/Styles/Main';
 import { Spinner, Thanks } from '@/Components';
-import { slideOutRightAnimation, playAnimation, speedLightOutRight } from '@/Styles/Animations';
+import { playAnimation, speedLightOutRight, rubberAnimation, resetAnimation } from '@/Styles/Animations';
 
 export default function ContactMe(): JSX.Element {
   const [sended, setSend] = React.useState<boolean>(false);
@@ -19,18 +20,18 @@ export default function ContactMe(): JSX.Element {
         <h1>Send Me A Mail</h1>
 
         <InputBox>
-          <label htmlFor='name'/>
+          <label htmlFor='name'><MdPersonOutline /></label>
           <input type='text' name='name' id='name' placeholder='Your Name' required />
         </InputBox>
 
         <InputBox>
-          <label htmlFor='mail'/>
+          <label htmlFor='mail'><MdMail /></label>
           <input type='email' name='mail' id='mail' placeholder='Your Mail' required />
         </InputBox>
 
         <InputBox>
           <label htmlFor='message'/>
-          <Message name='message' rows={6} id='message' placeholder='Send Me A Message If You Want To' />
+          <Message name='message' rows={6} id='message' placeholder='Tell Me In A Few Words How I Can Help You' />
         </InputBox>
 
       
@@ -39,7 +40,7 @@ export default function ContactMe(): JSX.Element {
         <input type='hidden' name='_template' value='table'/>
         <input type='hidden' name='_next' value='https://mr-ema.github.io/#/contactMe?send=1'/>
         
-        <Send type='submit' onClick={(e) => playAnimation(e)}>{'Send'}</Send> 
+        <Send type='submit' onClick={(e) => resetAnimation(e)}>{'Send'}</Send> 
       </Form>
     </Wrapper>
   )
@@ -71,8 +72,18 @@ const Form = styled.form`
 const InputBox = styled.div`
   grid-column: auto;
   display: flex;
+  position: relative;
 
   @media screen and (max-width: 800px){grid-column: 1/3;}
+
+  label {
+    position: absolute;
+    color: ${props => props.theme.fg.terciary};
+    font-size: 1.5rem;
+    font-weight: 600;
+    top: 20%;
+    right: 10%;
+  }
 
   input {
     background: none;
@@ -89,6 +100,8 @@ const InputBox = styled.div`
       border-left: 4px solid ${props => props.theme.fg.terciary};
       opacity: 1;
     }
+
+    @media screen and (max-width: 900px){font-size: .8rem;}
   }
 `
 
@@ -114,12 +127,15 @@ const Message = styled.textarea`
     border-left: 4px solid ${props => props.theme.fg.terciary};
     opacity: 1;
   }
+
+  @media screen and (max-width: 900px){font-size: .8rem;}
 `
 
 const Send = styled.button`
   animation-duration: 800ms;
-  animation-name: ${slideOutRightAnimation};
-  animation-iteration-count: 1;  
+  animation-name: ${rubberAnimation};
+  animation-fill-mode: forwards;
+  animation-iteration-count: 1; 
   animation-play-state: paused;
 
   justify-self: center;

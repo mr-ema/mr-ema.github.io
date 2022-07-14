@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import { bounceInLeftAnimation, bounceInRightAnimation } from './Animations';
 
 export const Wrapper = styled.main<{jc?: string}>`
   grid-column: 1/13;

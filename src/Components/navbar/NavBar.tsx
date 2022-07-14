@@ -12,7 +12,7 @@ export default function NavBar(): JSX.Element  {
         <Image src={logo} alt='Logo' className='logo'/>
         <ul>
           <SLink to="/">Home</SLink>
-          <SLink to="/showCase">Show Case</SLink>
+          <SLink to="/showCase">ShowCase</SLink>
           <SLink to="/about">About</SLink> 
         </ul>
         <ToggleTheme />

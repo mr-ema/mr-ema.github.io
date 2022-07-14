@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { SiReact, SiTypescript, SiNextdotjs, SiWebpack } from 'react-icons/si';
 import { Container, Wrapper, Text } from '@/Styles/Main';  
-import { bounceInLeftAnimation, resetAnimation, rubberAnimation } from '@/Styles/Animations';
+import { bounceInLeftAnimation, playAnimation, resetAnimation, rubberAnimation } from '@/Styles/Animations';
 import SVG from '@Public/assets/svg/animation.svg';
 import { ContactLinks } from '@/Components';
 
@@ -20,10 +20,11 @@ export default function Home(): JSX.Element {
             </Tech>
           </Text>
         </Animation>
+        
+          <SvgContainer>
+            <object data={SVG}></object>
+          </SvgContainer>
 
-        <SvgContainer>
-          <object data={SVG} />
-        </SvgContainer>
       </Container>
       
     </Wrapper>
@@ -36,7 +37,6 @@ const Animation = styled.div`
   animation-name: ${bounceInLeftAnimation}, ${rubberAnimation};
   animation-duration: 1600ms, 1200ms;
   animation-delay: 0ms, 1600ms;
-  animation-direction: normal, backwards;
   animation-fill-mode: none, forwards;
 `
 
@@ -49,18 +49,11 @@ const Tech = styled.div`
   @media screen and (max-width: 900px){ font-size: 1.3rem; }
 `
 
-const SvgContainer = styled.div`
-  &:hover {
-    animation-name: ${rubberAnimation};
-    animation-duration: 1600ms;
-    animation-iteration-count: 2;
-    animation-fill-mode:forwards;
-  }
-
+const SvgContainer = styled.div`  
   width: 400px;
   height: auto;
 
-  @media screen and (max-width: 900px){ width: 300px};
-  @media screen and (max-width: 600px){ width: 200px};
-  @media screen and (max-width: 500px){ width: 150px};
+  @media screen and (max-width: 900px){ width: 320px;}
+  @media screen and (max-width: 600px){ width: 220px;}
+  @media screen and (max-width: 500px){ width: 150px;}
 `
