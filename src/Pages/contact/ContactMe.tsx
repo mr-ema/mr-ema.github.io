@@ -2,18 +2,20 @@ import React from 'react';
 import { useSearchParams } from 'react-router-dom';
 import styled from 'styled-components';
 import { Wrapper } from '@/Styles/Main';
-import { Thanks } from '@/Components';
+import { Spinner, Thanks } from '@/Components';
 import { slideOutRightAnimation, playAnimation, speedLightOutRight } from '@/Styles/Animations';
 
 export default function ContactMe(): JSX.Element {
+  const [sended, setSend] = React.useState<boolean>(false);
   const [searchParams] = useSearchParams();
   const isSended: string | null = searchParams.get('send');
   
+  if (sended) { return <Spinner /> }
   if (isSended === '1') { return <Thanks /> }
 
   return (
     <Wrapper jc='flex-start'>
-      <Form onSubmit={(e) => playAnimation(e)} autoComplete='off' action='https://formsubmit.co/02b4fc6f6a8fd5c34d6ae644babfa5eb' method='POST'>
+      <Form onSubmit={(e) => {playAnimation(e); setTimeout(() => setSend(true), 200) }} autoComplete='off' action='https://formsubmit.co/02b4fc6f6a8fd5c34d6ae644babfa5eb' method='POST'>
         <h1>Send Me A Mail</h1>
 
         <InputBox>
