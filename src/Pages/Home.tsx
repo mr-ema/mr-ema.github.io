@@ -2,9 +2,9 @@ import React from 'react';
 import styled from 'styled-components';
 import { SiReact, SiTypescript, SiNextdotjs, SiWebpack } from 'react-icons/si';
 import { Container, Wrapper, Text } from '@/Styles/Main';  
-import { bounceInLeftAnimation, playAnimation, resetAnimation, rubberAnimation } from '@/Styles/Animations';
-import SVG from '@Public/assets/svg/animation.svg';
+import { bounceInLeftAnimation, resetAnimation, rubberAnimation } from '@/Styles/Animations';
 import { ContactLinks } from '@/Components';
+import SVG from '@Public/assets/svg/animation.svg';
 
 export default function Home(): JSX.Element {
   return (

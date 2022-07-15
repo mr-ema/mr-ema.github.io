@@ -55,9 +55,9 @@ module.exports = {
           enforce: true
         },
         vendor: {
-          chunks: 'initial',
-          test: /[\\/]node_modules[\\/](react | react-dom)[\\/]/,
+          test: /[\\/]node_modules[\\/](react | react-dom | react-router-dom)[\\/]/,
           name: 'vendor',
+          chunks: 'all',
           enforce: true
         }
       }

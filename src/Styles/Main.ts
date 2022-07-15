@@ -68,7 +68,6 @@ export const Container = styled.div<{width?: number, height?: number, fd?: strin
   height: ${props => props.height ? (props.height + 'vh'): 'auto'};
 
   @media screen and (max-width: 600px){ width: 100%; gap: 1rem; }
-
 `
 
 // ========================================================================
