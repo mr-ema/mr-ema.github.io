@@ -1,44 +1,45 @@
 import React from 'react';
-import { useSearchParams } from 'react-router-dom';
 import styled from 'styled-components';
 import { MdPersonOutline, MdMail } from 'react-icons/md';
 import { Wrapper } from '@/Styles/Main';
 import { Spinner, Thanks } from '@/Components';
-import { playAnimation, speedLightOutRight, rubberAnimation, resetAnimation } from '@/Styles/Animations';
+import { speedLightOutRight, rubberAnimation, resetAnimation } from '@/Styles/Animations';
+import useValidation from './useValidation';
 
 export default function ContactMe(): JSX.Element {
-  const [sended, setSend] = React.useState<boolean>(false);
-  const [searchParams] = useSearchParams();
-  const isSended: string | null = searchParams.get('send');
-  
-  if (sended) { return <Spinner /> }
-  if (isSended === '1') { return <Thanks /> }
+  // Logic
+  const {loading, sended, searchParams ,handleSubmit, handleChange, error, data} = useValidation();
+
+  if (sended || searchParams.get('send') === '1') { return <Thanks /> }
+  if (loading) { return <Spinner /> }
 
   return (
     <Wrapper>
-      <Form onSubmit={(e) => {playAnimation(e); setTimeout(() => setSend(true), 600) }} autoComplete='off' action='https://formsubmit.co/02b4fc6f6a8fd5c34d6ae644babfa5eb' method='POST'>
+      <Form onSubmit={handleSubmit} autoComplete='off'>
+        
         <h1>Send Me A Mail</h1>
-
         <InputBox>
           <label htmlFor='name'><MdPersonOutline /></label>
-          <input type='text' name='name' id='name' placeholder='Your Name' required />
+          <input onChange={handleChange} value={data.name} type='text' name='name' id='name' placeholder='Your Name'/>
+          {error?.name && <span>{error.name}</span>}
         </InputBox>
 
         <InputBox>
-          <label htmlFor='mail'><MdMail /></label>
-          <input type='email' name='mail' id='mail' placeholder='Your Mail' required />
+          <label htmlFor='email'><MdMail /></label>
+          <input onChange={handleChange} value={data.email} type='email' name='email' id='email' placeholder='Your E-Mail'/>
+          {error?.email && <span>{error.email}</span>}
         </InputBox>
 
         <InputBox>
           <label htmlFor='message'/>
-          <Message name='message' rows={6} id='message' placeholder='Tell Me In A Few Words How I Can Help You' />
+          <Message onChange={handleChange} value={data.message} name='message' rows={6} id='message' placeholder='Tell Me In A Few Words How I Can Help You' />
+          {error?.message && <span>{error.message}</span>}
         </InputBox>
 
       
         <input type='hidden' name='_captcha' value='false'/>
         <input type='hidden' name='_subject' value='Portofolio Contact'/>
         <input type='hidden' name='_template' value='table'/>
-        <input type='hidden' name='_next' value='https://mr-ema.github.io/#/contactMe?send=1'/>
         
         <Send type='submit' onClick={(e) => resetAnimation(e)}>{'Send'}</Send> 
       </Form>
@@ -103,6 +104,17 @@ const InputBox = styled.div`
 
     @media screen and (max-width: 900px){font-size: .8rem;}
   }
+
+  span {
+    color: ${props => props.theme.alert.warning};
+    font-size: 1rem;
+    font-weight: 600;
+    position: absolute;
+    bottom: -1rem;
+    left: 6px;
+
+    @media screen and (max-width: 900px){font-size: .8rem;}
+  }
 `
 
 const Message = styled.textarea`
@@ -126,6 +138,17 @@ const Message = styled.textarea`
   &:focus {
     border-left: 4px solid ${props => props.theme.fg.terciary};
     opacity: 1;
+  }
+
+  span {
+    color: ${props => props.theme.alert.warning};
+    font-size: 1rem;
+    font-weight: 600;
+    position: absolute;
+    bottom: -1rem;
+    left: 6px;
+
+    @media screen and (max-width: 900px){font-size: .8rem;}
   }
 
   @media screen and (max-width: 900px){font-size: .8rem;}

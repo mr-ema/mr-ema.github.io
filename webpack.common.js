@@ -25,6 +25,7 @@ module.exports = {
       },
       {// * You Need To Define Assets Here And In custom.d.ts
         test: /\.(png|svg)$/i,
+        exclude: /node_modules/,
         loader: 'file-loader',
         options:  {
           // Custom Path To Save Assets When Build
@@ -54,10 +55,15 @@ module.exports = {
           chunks: 'all',
           enforce: true
         },
-        vendor: {
-          test: /[\\/]node_modules[\\/](react | react-dom | react-router-dom)[\\/]/,
-          name: 'vendor',
-          chunks: 'all',
+        AnimationVendor: {
+          test: /[\\/]node_modules[\\/](react-animation-on-scroll|react-animations|react-icons|styled-components)[\\/]/,
+          name: 'vendors/vendor-styles',
+          chunks: 'all'
+        },
+        reactVendor: {
+          test: /[\\/]node_modules[\\/](react|react-dom|react-router-dom)[\\/]/,
+          name: 'vendors/vendor-react',
+          chunks: 'initial',
           enforce: true
         }
       }

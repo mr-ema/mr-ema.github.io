@@ -17,6 +17,10 @@ export const Theme: ThemeType = {
       primary: '#eacdc2',
       secundary: '#d5bcb2',
       terciary: '#b75d69',
+    },
+    alert: {
+      error: '#bf2b2b',
+      warning: '#bf992b',
     }
   },
   light: {
@@ -31,6 +35,10 @@ export const Theme: ThemeType = {
         primary: '#283618',
         secundary: '#364921',
         terciary: '#008480',
+      },
+      alert: {
+        error: '#dc0000',
+        warning: '#dc9700',
       }
   }
 }
