@@ -8,7 +8,10 @@ import useValidation from './useValidation';
 
 export default function ContactMe(): JSX.Element {
   // Logic
-  const {loading, sended, searchParams ,handleSubmit, handleChange, error, data} = useValidation();
+  const {
+    loading, sended, searchParams ,handleSubmit, 
+    handleChange, debounceError, data
+  } = useValidation();
 
   if (sended || searchParams.get('send') === '1') { return <Thanks /> }
   if (loading) { return <Spinner /> }
@@ -18,22 +21,27 @@ export default function ContactMe(): JSX.Element {
       <Form onSubmit={handleSubmit} autoComplete='off'>
         
         <h1>Send Me A Mail</h1>
+
+        <Errors>
+          {Object.keys(debounceError).length > 0 && <h3>Errors {'( ' + Object.keys(debounceError).length + ' )'}</h3> }
+          {debounceError?.name && <span>{debounceError.name}</span>}
+          {debounceError?.email && <span>{debounceError.email}</span>}
+          {debounceError?.message && <span>{debounceError.message}</span>}
+        </Errors>
+
         <InputBox>
           <label htmlFor='name'><MdPersonOutline /></label>
           <input onChange={handleChange} value={data.name} type='text' name='name' id='name' placeholder='Your Name'/>
-          {error?.name && <span>{error.name}</span>}
         </InputBox>
 
         <InputBox>
           <label htmlFor='email'><MdMail /></label>
           <input onChange={handleChange} value={data.email} type='email' name='email' id='email' placeholder='Your E-Mail'/>
-          {error?.email && <span>{error.email}</span>}
         </InputBox>
 
         <InputBox>
           <label htmlFor='message'/>
           <Message onChange={handleChange} value={data.message} name='message' rows={6} id='message' placeholder='Tell Me In A Few Words How I Can Help You' />
-          {error?.message && <span>{error.message}</span>}
         </InputBox>
 
       
@@ -46,6 +54,30 @@ export default function ContactMe(): JSX.Element {
     </Wrapper>
   )
 }
+
+const Errors = styled.div`
+  grid-column: 1/3;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+
+  h3 {
+    color: ${props => props.theme.alert.error};
+    font-size: 1.3rem;
+    margin-bottom: -.1rem;
+    @media screen and (max-width: 900px){font-size: 1rem;}
+  }
+
+  span {
+    color: ${props => props.theme.alert.warning};
+    font-size: 1rem;
+    font-weight: 600;
+
+    @media screen and (max-width: 900px){font-size: .8rem;}
+  }
+`
 
 const Form = styled.form`
   animation-name: ${speedLightOutRight};
@@ -63,7 +95,6 @@ const Form = styled.form`
     grid-column: 1/3;
     font-family: 'Josefin Sans', sans-serif;
     font-size: 3.6rem;
-    margin-bottom: 3rem;
     text-align: center;
     @media screen and (max-width: 900px){ font-size: 2.6rem; } 
     @media screen and (max-width: 600px){ font-size: 1.6rem; }  
@@ -104,17 +135,6 @@ const InputBox = styled.div`
 
     @media screen and (max-width: 900px){font-size: .8rem;}
   }
-
-  span {
-    color: ${props => props.theme.alert.warning};
-    font-size: 1rem;
-    font-weight: 600;
-    position: absolute;
-    bottom: -1rem;
-    left: 6px;
-
-    @media screen and (max-width: 900px){font-size: .8rem;}
-  }
 `
 
 const Message = styled.textarea`
@@ -138,17 +158,6 @@ const Message = styled.textarea`
   &:focus {
     border-left: 4px solid ${props => props.theme.fg.terciary};
     opacity: 1;
-  }
-
-  span {
-    color: ${props => props.theme.alert.warning};
-    font-size: 1rem;
-    font-weight: 600;
-    position: absolute;
-    bottom: -1rem;
-    left: 6px;
-
-    @media screen and (max-width: 900px){font-size: .8rem;}
   }
 
   @media screen and (max-width: 900px){font-size: .8rem;}

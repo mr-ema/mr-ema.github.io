@@ -1,10 +1,12 @@
 import React from 'react';
 import { playAnimation } from '@/Styles/Animations';
 import { useSearchParams } from 'react-router-dom';
+import { useDebounce } from '@/Hooks/useDebounce';
 
 export default function useValidation() {
   const [data, setData] = React.useState<IContactMe>({ name: '', email: '', });
-  const [error, setError] = React.useState<Partial<IContactMe>>({});
+  const [error, setError] = React.useState<IContactMeErr>({});
+  const debounceError = useDebounce<IContactMeErr>(error);
   const [loading, setLoading] = React.useState<boolean>(false);
   const [searchParams, setSearchParams] = useSearchParams();
   const [sended, setSended] = React.useState<boolean>(false);
@@ -17,11 +19,8 @@ export default function useValidation() {
       ...data,
       [event.target.name]: event.target.value
     });
-
-    setError({
-      ...error,
-      [event.target.name]: ''
-    })
+    
+    setError(validateContact(data));
   }
 
   function handleSubmit(event: React.SyntheticEvent): void {
@@ -45,7 +44,7 @@ export default function useValidation() {
         setSended(true);
       }
   }
-
+    // Check if no errors are return
     if (Object.keys(validateContact(data)).length === 0) {
       playAnimation(event); 
       setTimeout(() => setLoading(true), 600);
@@ -55,30 +54,30 @@ export default function useValidation() {
   }
 
   return {
-    data, error, sended, 
+    data, debounceError, sended, 
     loading, searchParams, 
     handleChange, handleSubmit
   }
 }
 
-function validateContact(obj: IContactMe): Partial<IContactMe> {
-  const errors: Partial<IContactMe> = {};
+function validateContact(obj: IContactMe): IContactMeErr {
+  const errors: IContactMeErr = {};
 
-  if (!obj.name) {
-    errors.name = 'Required';
+  if (!obj.name || obj.name === '') {
+    errors.name = 'Name Is Required';
   }
   
   if (!obj.email) {
-    errors.email = 'Required';
+    errors.email = 'E-mail Is Required';
   }else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(obj.email)) {
-    errors.email = 'Invalid email address';
+    errors.email = 'Email Is Invalid';
   }
   
   if (obj.message) {
     if (obj.message.length > 400) {
-      errors.message = 'Too Long';
+      errors.message = 'Message Is Too Long';
     }
   }
 
-  return errors;
+  return errors
 }

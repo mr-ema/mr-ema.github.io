@@ -38,7 +38,7 @@ const MessageBox = styled.div`
     color: ${props => props.theme.fg.primary};
     font-size: 6vw;
     font-weight: 700;
-    text-transform: uppercase;
+    text-transform: capitalize;
     @media (max-width:900px) {font-size: 10vw;}
     
     & > span {

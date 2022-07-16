@@ -3,3 +3,5 @@ interface IContactMe {
   email: string,
   message?: string
 }
+
+interface IContactMeErr extends Partial<IContactMe> {}

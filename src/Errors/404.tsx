@@ -1,78 +1,83 @@
 import React from 'react';
 import styled from 'styled-components';
-import { Link } from 'react-router-dom';
-import { VscBracketError } from 'react-icons/vsc';
+import { Link, useNavigate } from 'react-router-dom';
+import { VscBracketError, VscDebugStepBack } from 'react-icons/vsc';
 import { Wrapper } from '@/Styles/Main';
-import { hingeAnimation, rollInAnimation } from '@/Styles/Animations';
+import { hingeAnimation } from '@/Styles/Animations';
 
 
 export default function _404_(): JSX.Element {
+  const navigate = useNavigate();
+
   return (
     <Wrapper>
       <Message>
-        <h1><span>U</span>pps<span> !</span></h1>
-        <span>This Page Doesn't Exist</span>
+        <h1><span>4</span>0<span>4</span></h1>
+        <Banner>
+          <VscBracketError />
+        </Banner>
+        <span>Page Not Found</span>
 
-        <Link to='/'>Go Back</Link>
+        <button onClick={() => navigate(-1)}><VscDebugStepBack/> Go Back</button>
       </Message>
 
-      <Banner>
-        <VscBracketError />
-      </Banner>
     </Wrapper>
   )
 }
 
 // STYLES
 const Message = styled.div`
-  animation: ${rollInAnimation};
-  animation-duration: 800ms;
-  animation-fill-mode: forwards;
-
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 2rem;
+  position: relative;
 
-  & > h1 {
+  h1 {
     color: ${props => props.theme.fg.primary};
-    font-size: 7vw;
-    @media (max-width: 600px){ font-size: 2.3rem; }
+    font-size: 10rem;
+    @media (max-width: 700px){ font-size: 5rem; }
+
+    span {color: ${props => props.theme.fg.terciary};}
   }
 
-  & > a {
+  button {
+    background: none;
     border: 0;
-    border-left: .2rem solid ${props => props.theme.fg.terciary};
-    border-right: .2rem solid ${props => props.theme.fg.terciary};
     color: ${props => props.theme.fg.primary};
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: 1.3rem;
     font-weight: 800;
     padding: .3rem .9rem;
     text-decoration: none;
-    @media(max-width: 900px){ font-size: 0.7rem; }
-  }
+    @media(max-width: 700px){ font-size: 0.9rem; }
 
-  & > a:hover {
-    opacity: 0.6;
-  }
-
-  & > h1 > span {
-    color: ${props => props.theme.fg.terciary};
+    &:hover {opacity: 0.6;}
   }
 
   & > span {
     color: ${props => props.theme.fg.secundary};
-    font-size: 1.6rem;
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: 1.2rem;
     font-weight: 700;
-    @media (max-width: 900px){ font-size: 1rem; }
+    margin-bottom: 2rem;
+    text-align: end;
+    width: 100%;
+    @media (max-width: 700px){ font-size: .7rem; }
   }
 `
 
-const Banner = styled.span`
+const Banner = styled.div`
   animation: ${hingeAnimation};
-  animation-duration: 2600ms;
-  animation-delay: 1000ms;
+  animation-duration: 1800ms;
+  animation-delay: 600ms;
+  animation-timing-function: ease-out;
   animation-fill-mode: forwards;
   color: ${props => props.theme.fg.terciary};
-  font-size: 16vw;
+  font-size: 10rem;
+  position: absolute;
+  left: 100%;
+  top: 100%;
+  
+  @media (max-width: 600px){ font-size: 5rem; }
 `
