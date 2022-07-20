@@ -23,10 +23,12 @@ export default function ContactMe(): JSX.Element {
         <h1>Send Me A Mail</h1>
 
         <Errors>
-          {Object.keys(debounceError).length > 0 && <h3>Errors {'( ' + Object.keys(debounceError).length + ' )'}</h3> }
-          {debounceError?.name && <span>{debounceError.name}</span>}
-          {debounceError?.email && <span>{debounceError.email}</span>}
-          {debounceError?.message && <span>{debounceError.message}</span>}
+          {Object.keys(debounceError).length > 0 && <h3>Errors {'[' + Object.keys(debounceError).length + ']'}</h3> }
+          <div>
+            {debounceError?.name && <span>{debounceError.name}</span>}
+            {debounceError?.email && <span>{debounceError.email}</span>}
+            {debounceError?.message && <span>{debounceError.message}</span>}
+          </div>
         </Errors>
 
         <InputBox>
@@ -62,20 +64,35 @@ const Errors = styled.div`
   justify-content: center;
   align-items: center;
   gap: 1rem;
+  margin-top: -2rem;
+
+  @media screen and (max-width: 600px){
+    gap: .5rem
+  }
 
   h3 {
     color: ${props => props.theme.alert.error};
-    font-size: 1.3rem;
-    margin-bottom: -.1rem;
-    @media screen and (max-width: 900px){font-size: 1rem;}
+    font-size: 1.2rem;
+    @media screen and (max-width: 900px){font-size: .9rem;}
+  }
+
+  div {
+    display: flex; 
+    flex-direction: row; 
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1rem;
   }
 
   span {
-    color: ${props => props.theme.alert.warning};
-    font-size: 1rem;
+    background-color: ${props => props.theme.alert.error + '39'};
+    border-left: 4px solid ${props => props.theme.alert.error};
+    color: ${props => props.theme.fg.primary};
+    font-size: .9rem;
     font-weight: 600;
+    padding: .2rem .3rem;
 
-    @media screen and (max-width: 900px){font-size: .8rem;}
+    @media screen and (max-width: 900px){font-size: .7rem;}
   }
 `
 

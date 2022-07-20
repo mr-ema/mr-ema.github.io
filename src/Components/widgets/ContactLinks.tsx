@@ -47,7 +47,6 @@ const List = styled.ul`
     text-decoration: none;
 
     @media screen and (max-width: 900px){font-size: 2rem;}
-    @media screen and (max-width: 600px){font-size: 1.69rem;}
     &:hover {
       opacity: 1;
     }

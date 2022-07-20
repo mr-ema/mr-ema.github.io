@@ -19,8 +19,8 @@ export const Theme: ThemeType = {
       terciary: '#b75d69',
     },
     alert: {
-      error: '#bf2b2b',
-      warning: '#bf992b',
+      error: '#b75d5d',
+      warning: '#b7a35d',
     }
   },
   light: {
@@ -37,8 +37,8 @@ export const Theme: ThemeType = {
         terciary: '#008480',
       },
       alert: {
-        error: '#dc0000',
-        warning: '#dc9700',
+        error: '#840000',
+        warning: '#846e00',
       }
   }
 }

@@ -27,6 +27,6 @@
     },
   },
   
-  "include": ["src/**/*.tsx", "custom.d.ts", "src/**/*.ts"],
+  "include": ["src/**/*.tsx", "custom.d.ts", "src/**/*.ts", "/**/**/*.ts"],
   "exclude": ["node_modules"]
 }
