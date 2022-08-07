@@ -1,8 +1,9 @@
 import React from 'react';
 import styled from 'styled-components';
-import { SiNextdotjs, SiMongodb, SiGithub } from 'react-icons/si';
+import { SiNextdotjs, SiMongodb, SiGithub, SiRedux, SiPrivateinternetaccess } from 'react-icons/si';
 import { Wrapper, Container } from '@/Styles/Main';
 import project from '@Public/assets/images/showCase/next_store.png';
+import burgerProject from '@Public/assets/images/showCase/hamburger_store.png';
 import { bounceInAnimation } from '@/Styles/Animations';
 
 export default function ShowCase(): JSX.Element {
@@ -23,9 +24,28 @@ export default function ShowCase(): JSX.Element {
             <a href='https://github.com/mr-ema/nextjs-store/' target='_blank'><SiGithub/></a>
           </Info>
         </Box>
+
+        <Box>
+          <Project>
+            <a href='https://burger-shop-omega.vercel.app/' target='_blank'>
+              <img src={burgerProject} alt='Nextjs-Store Live Demo'/>
+            </a>
+          </Project>
+          <Info>
+            <span className='tecnos'>
+              <SiNextdotjs/> <SiMongodb/> <SiRedux/>
+            </span>
+          
+            <button onClick={privateRepo}><SiPrivateinternetaccess/></button>
+          </Info>
+        </Box>
       </Container>
     </Wrapper>
   )
+}
+
+function privateRepo() {
+  alert('This Repo Is Private For The Moment')
 }
 
 const Box = styled.section`
@@ -97,7 +117,8 @@ const Info = styled.div`
   @media screen and (max-width: 900px){width: 100%;}
   @media screen and (max-width: 650px){font-size: 2rem;}
 
-  a {
+  a, button {
+    background: none;
     text-decoration: none;
     color: ${props => props.theme.fg.terciary};
     font-weight: 600;
@@ -113,6 +134,9 @@ const Info = styled.div`
   }
 
   .tecnos {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
     color: ${props => props.theme.fg.secundary};
     font-size: inherit;
     position: absolute;
