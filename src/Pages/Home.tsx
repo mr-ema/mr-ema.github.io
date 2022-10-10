@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { SiReact, SiTypescript, SiNextdotjs, SiWebpack } from 'react-icons/si';
 import { Container, Wrapper, Text } from '@/Styles/Main';  
-import { bounceInLeftAnimation, resetAnimation, rubberAnimation } from '@/Styles/Animations';
+import { resetAnimation, rubberAnimation } from '@/Styles/Animations';
 import { ContactLinks } from '@/Components';
 import SVG from '@Public/assets/svg/animation.svg';
 
@@ -34,9 +34,9 @@ export default function Home(): JSX.Element {
 const Animation = styled.div`
   display: flex;
   
-  animation-name: ${bounceInLeftAnimation}, ${rubberAnimation};
-  animation-duration: 1600ms, 1200ms;
-  animation-delay: 0ms, 1600ms;
+  animation-name: ${rubberAnimation};
+  animation-duration: 1200ms;
+  animation-delay: 800ms;
   animation-fill-mode: none, forwards;
 `
 
