@@ -1,0 +1,12 @@
+[
+  {
+    "title": "NextJS Store",
+    "description": "Simple NextJs ecommerce site",
+    "url": "https://nextjs-store-mr-ema.vercel.app/"
+  },
+  {
+    "title": "Cnake",
+    "description": "The classic snake game",
+    "url": "/games/cnake/index.html"
+  }
+]

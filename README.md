@@ -1,3 +1,3 @@
-# Welcome To My Portfolio
+# Folio
 
-## Hosting In GitHub-Pages
+This folio was created using svelte and vite.
