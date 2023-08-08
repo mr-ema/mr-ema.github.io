@@ -1,5 +1,6 @@
 <script>
         import projects from "/src/data/projects.json";
+        import Icon from "@iconify/svelte";
 </script>
 
 {#each projects as project}
@@ -8,23 +9,51 @@
                         <h2>{project.title}</h2>
                         <p>{project.description}</p>
                 </div>
-                <a href={project.url} target="_blank">Live preview</a>
+
+                <div class="links">
+                        <a href={project.url} target="_blank" class="btn-link">See Live</a>
+                        <a href={project.source_code} target="_blank">Source Code</a>
+                </div>
         </div>
 {/each}
 
 <style>
         div.container {
-                border: 2px solid var(--bg-2);
-                border-radius: 0.3rem;
-                gap: 1rem;
+                border: 0;
+                border-radius:  0 1rem 1rem 0;
+                border-left: 0.2rem solid var(--fg-3);
+                background: var(--bg-2);
+                gap: 2rem;
                 display: flex;
                 flex-direction: column;
-                padding: 2rem 1.5rem;
+                padding: 1.5rem;
                 width: 80%;
         }
 
-        a {
-                align-self: flex-end;
-                text-decoration: none;
+        .links {
+                display: flex;
+                flex-direction: row;
+                align-items: flex-end;
+                gap: 1rem;
+                align-content: center;
+                width: 100%;
         }
+
+        a.btn-link {
+                border: 2px solid var(--fg-3);
+                border-radius: 0.3rem;
+        }
+
+        a {
+                text-decoration: none;
+                color: var(--fg-3);
+                font-weight: bold;
+                padding: 0.4rem 1rem;
+        }
+
+        a:hover {
+                opacity: 0.6;
+                transition: opacity 0.3s ease;
+        }
+
 </style>

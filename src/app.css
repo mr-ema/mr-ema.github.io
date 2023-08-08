@@ -10,11 +10,11 @@
 
 :root {
   --bg-1: hsl(0, 0%, 100%);
-  --bg-2: hsl(206, 20%, 90%);
-  --bg-3: hsl(206, 20%, 80%);
+  --bg-2: hsl(206, 20%, 95%);
+  --bg-3: hsl(206, 20%, 85%);
   --fg-1: hsl(0, 0%, 13%);
   --fg-2: hsl(0, 0%, 20%);
-  --fg-2: hsl(0, 0%, 30%);
+  --fg-3: hsl(170, 68%, 36%);
   --link: hsl(208, 77%, 47%);
   --link-hover: hsl(208, 77%, 55%);
   --link-active: hsl(208, 77%, 40%);
@@ -162,9 +162,24 @@ nav a[aria-current='true'] {
   position: relative;
 }
 
-.icon-container > svg {
-        color: var(--fg-1);
-        font-size: 48px;
+:is(.icon-container, .icon-text-container) > svg {
+  color: var(--fg-1);
+  font-size: 48px;
+}
+
+:is(.icon-container > svg:hover, .icon-text-container:hover)  {
+  opacity: 0.6;
+  transition: opacity 0.3s ease;
+}
+
+.icon-text-container {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.icon-text-container:last-child {
+  color: var(--fg-1);
 }
 
 code {
@@ -177,12 +192,12 @@ code {
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --bg-1: hsl(0, 0%, 9%);
-    --bg-2: hsl(0, 0%, 20%);
-    --bg-3: hsl(0, 0%, 30%);
+    --bg-1: hsl(0, 0%, 6%);
+    --bg-2: hsl(0, 0%, 10%);
+    --bg-3: hsl(0, 0%, 13%);
     --fg-1: hsl(0, 0%, 90%);
     --fg-2: hsl(0, 0%, 70%);
-    --fg-3: hsl(0, 0%, 60%);
+    --fg-3: hsl(171, 68%, 67%);
     --link: hsl(206, 96%, 72%);
     --link-hover: hsl(206, 96%, 78%);
     --link-active: hsl(206, 96%, 64%);

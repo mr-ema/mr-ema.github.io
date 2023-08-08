@@ -28,10 +28,39 @@
 
         <section id="about-me">
                 <h1>About Me</h1>
-                <p>
-                        My name is Emanuel, and I'm a student studying Programming Analysis. <br/>
-                        I have a strong passion for coding and continually expanding my knowledge by learning new things.
-                </p>
+                <p> Hi, I'm Emanuel, a programming analysis student. I enjoy food, learning, and coding.</p>
+
+                <a href="#links" class="scroll-btn">
+                        <span class="icon-container">
+                                <Icon icon="icon-park-solid:down-c" />
+                        </span>
+                </a>
+        </section>
+
+        <section id="links">
+                <h1>Links</h1>
+
+                <div class="links-container">
+                        <a href="https://github.com/mr-ema" target="_blank" title="Visit My Github Profile">
+                                <span class="icon-text-container">
+                                        <Icon icon="ri:github-fill" />
+                                        <span>Github</span>
+                                </span>
+                        </a>
+
+                        <a href="mailto:ema.a.v.c2017@gmail.com" target="_blank" title="Send Me An Email">
+                                <span class="icon-text-container">
+                                        <Icon icon="bxl:gmail" />
+                                        <span>Email</span>
+                                </span>
+                        </a>
+                </div>
+
+                <a href="#banner" class="scroll-btn" title="Go Back To The Start">
+                        <span class="icon-container">
+                                <Icon icon="icon-park-solid:up-c" />
+                        </span>
+                </a>
         </section>
 </main>
 
@@ -46,11 +75,23 @@
                 max-width: 80%;
         }
 
+        a { text-decoration: none; }
+
+        div.links-container {
+                border-bottom: 0.13rem solid var(--fg-3);
+                padding: 1rem; 
+                display: flex;
+                align-items: center;
+                gap: 1.5rem;
+                height: auto;
+        }
+
         section {
-                font-family: 'JetBrains Mono', monospace;
                 display: flex;
                 gap: 2rem;
                 position: relative;
+                font-family: 'JetBrains Mono', monospace;
+                font-weight: bold;
                 align-items: center; 
                 justify-content: center;
                 flex-direction: column;
