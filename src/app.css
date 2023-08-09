@@ -163,8 +163,8 @@ nav a[aria-current='true'] {
 }
 
 :is(.icon-container, .icon-text-container) > svg {
-  color: var(--fg-1);
-  font-size: 48px;
+  color: var(--fg-2);
+  font-size: 44px;
 }
 
 :is(.icon-container > svg:hover, .icon-text-container:hover)  {

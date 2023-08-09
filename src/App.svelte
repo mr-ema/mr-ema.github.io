@@ -6,11 +6,11 @@
 
 <main>
         <section id="banner">
-                <img class="banner" src={banner} alt="Banner" />
+                <img class="banner" src={banner} alt="A banner with the text 'MR-EMA' in a retro game like style" />
 
                 <a href="#my-projects" class="scroll-btn">
                         <span class="icon-container">
-                                <Icon icon="icon-park-solid:down-c" />
+                                <Icon icon="icon-park-outline:down-c" />
                         </span>
                 </a>
         </section>
@@ -21,7 +21,7 @@
 
                 <a href="#about-me" class="scroll-btn">
                         <span class="icon-container">
-                                <Icon icon="icon-park-solid:down-c" />
+                                <Icon icon="icon-park-outline:down-c" />
                         </span>
                 </a>
         </section>
@@ -32,7 +32,7 @@
 
                 <a href="#links" class="scroll-btn">
                         <span class="icon-container">
-                                <Icon icon="icon-park-solid:down-c" />
+                                <Icon icon="icon-park-outline:down-c" />
                         </span>
                 </a>
         </section>
@@ -58,7 +58,7 @@
 
                 <a href="#banner" class="scroll-btn" title="Go Back To The Start">
                         <span class="icon-container">
-                                <Icon icon="icon-park-solid:up-c" />
+                                <Icon icon="icon-park-outline:up-c" />
                         </span>
                 </a>
         </section>

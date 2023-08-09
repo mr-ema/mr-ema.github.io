@@ -20,7 +20,7 @@
 <style>
         div.container {
                 border: 0;
-                border-radius:  0 1rem 1rem 0;
+                border-radius:  0 0.45rem 0.45rem 0;
                 border-left: 0.2rem solid var(--fg-3);
                 background: var(--bg-2);
                 gap: 2rem;
@@ -40,8 +40,8 @@
         }
 
         a.btn-link {
-                border: 2px solid var(--fg-3);
-                border-radius: 0.3rem;
+                border: 0.13rem solid var(--fg-3);
+                border-radius: 0.15rem;
         }
 
         a {
