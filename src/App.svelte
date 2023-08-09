@@ -8,7 +8,7 @@
         <section id="banner">
                 <img class="banner" src={banner} alt="A banner with the text 'MR-EMA' in a retro game like style" />
 
-                <a href="#my-projects" class="scroll-btn">
+                <a href="#my-projects" class="scroll-btn" title="Scroll To The Next Section" aria-label="Scroll to the next section">
                         <span class="icon-container">
                                 <Icon icon="icon-park-outline:down-c" />
                         </span>
@@ -18,8 +18,8 @@
         <section id="my-projects">
                 <h1>My Projects</h1>
                 <Project />
-
-                <a href="#about-me" class="scroll-btn">
+                
+                <a href="#about-me" class="scroll-btn" title="Scroll To The Next Section" aria-label="Scroll to the next section">
                         <span class="icon-container">
                                 <Icon icon="icon-park-outline:down-c" />
                         </span>
@@ -30,7 +30,7 @@
                 <h1>About Me</h1>
                 <p> Hi, I'm Emanuel, a programming analysis student. I enjoy food, learning, and coding.</p>
 
-                <a href="#links" class="scroll-btn">
+                <a href="#links" class="scroll-btn" title="Scroll To The Next Section" aria-label="Scroll to the next section">
                         <span class="icon-container">
                                 <Icon icon="icon-park-outline:down-c" />
                         </span>
@@ -41,14 +41,14 @@
                 <h1>Links</h1>
 
                 <div class="links-container">
-                        <a href="https://github.com/mr-ema" target="_blank" title="Visit My Github Profile">
+                        <a href="https://github.com/mr-ema" target="_blank" title="Visit My Github Profile" aria-label="Visit My Github Profile">
                                 <span class="icon-text-container">
                                         <Icon icon="ri:github-fill" />
                                         <span>Github</span>
                                 </span>
                         </a>
 
-                        <a href="mailto:ema.a.v.c2017@gmail.com" target="_blank" title="Send Me An Email">
+                        <a href="mailto:ema.a.v.c2017@gmail.com" target="_blank" title="Send Me An Email" aria-label="Send Me An Email">
                                 <span class="icon-text-container">
                                         <Icon icon="bxl:gmail" />
                                         <span>Email</span>
@@ -56,7 +56,7 @@
                         </a>
                 </div>
 
-                <a href="#banner" class="scroll-btn" title="Go Back To The Start">
+                <a href="#banner" class="scroll-btn" title="Scroll Back To The Start" aria-label="Scroll Back To The Start">
                         <span class="icon-container">
                                 <Icon icon="icon-park-outline:up-c" />
                         </span>
