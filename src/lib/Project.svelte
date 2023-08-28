@@ -1,6 +1,5 @@
 <script>
-        import projects from "/src/data/projects.json";
-        import Icon from "@iconify/svelte";
+        import projects from "../data/projects.json";
 </script>
 
 {#each projects as project}
