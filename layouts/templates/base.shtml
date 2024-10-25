@@ -5,7 +5,7 @@
   <meta charset="UTF-8">
   <meta name="description" content="Mr Ema: I'm a developer focused on building responsive, clean, and efficient websites, apps and tools. Check out my projects to see how I bring ideas to life through code. ">
   <meta property="og:type" content="website">
-  <meta property="og:title" content="$page.title.suffix(' | Zine')">
+  <meta property="og:title" content="$page.title.suffix(' | Mr Ema')">
   <meta property="og:image" content="$site.host_url.addPath($site.asset('preview.png').link())">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
