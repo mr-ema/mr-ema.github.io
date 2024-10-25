@@ -1,0 +1,9 @@
+@font-face {
+  font-family: 'JetBrains Mono';
+  src: url('/fonts/JetBrainsMono-VariableFont_wght.ttf');
+}
+
+@font-face {
+  font-family: 'Fascinate Inline';
+  src: url('/fonts/FascinateInline-Regular.ttf');
+}
