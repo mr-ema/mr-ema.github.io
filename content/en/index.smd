@@ -1,0 +1,13 @@
+---
+.title = "Home",
+.date = @date("2024-10-23T19:10:35"),
+.author = "Mr-Ema",
+.layout = "index.shtml",
+.draft = false,
+---
+
+[]($section.id('about'))
+# About
+I'm a developer focused on building responsive, clean, and efficient
+websites, apps and tools. Check out my projects to see how I bring ideas
+to life through code.

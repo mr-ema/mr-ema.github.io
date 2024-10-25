@@ -1,0 +1,14 @@
+[
+  {
+    "name": "Coffee Store",
+    "description": "Simple NextJs ecommerce site",
+    "url": "https://nextjs-store-mr-ema.vercel.app/",
+    "source_code": "https://github.com/mr-ema/nextjs-store"
+  },
+  {
+    "name": "Cnake",
+    "description": "The classic snake game",
+    "url": "/games/cnake",
+    "source_code": "https://github.com/mr-ema/cnake"
+  }
+]

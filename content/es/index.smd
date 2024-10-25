@@ -1,0 +1,13 @@
+---
+.title = "Home",
+.date = @date("2024-10-23T19:10:35"),
+.author = "Mr-Ema",
+.layout = "index.shtml",
+.draft = false,
+---
+
+[]($section.id('about'))
+# Sobre Mi
+Soy un programador enfocado en desarrollar software estable, escalable y
+eficiente. Te invito a explorar mis proyectos y descubrir cómo convierto
+ideas en soluciones sólidas y funcionales.
