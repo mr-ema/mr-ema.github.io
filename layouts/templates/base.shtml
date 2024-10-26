@@ -11,7 +11,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <title id="title">
     <super>
-      - MrEma
+      - Mr Ema
   </title>
   <link rel="icon" type="image/svg+xml" href="$site.asset('logo.svg').link()">
   <link rel="stylesheet" type="text/css" href="$site.asset('css/fonts.css').link()">
