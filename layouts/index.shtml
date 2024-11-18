@@ -6,13 +6,29 @@
   <style>
     nav {
       position: fixed;
+      top: 0;
       right: 0;
-      padding: 1em 2em;
+      padding: 1rem;
+      margin: 0;
+
+      @media (max-width: 500px) {
+        width: 100%;
+
+        position: absolute;
+        padding: 1rem 0;
+        top: 70%;
+
+        :is(div, button) {
+          width: 90%;
+          margin: auto;
+        }
+      }
     }
 
     .banner {
       height: auto;
       min-width: 70%;
+      max-width: 95%;
     }
 
     p {
@@ -54,9 +70,9 @@
     }
 
     h1 {
-      font-size: 3.5rem;
+      font-size: clamp(2rem, 5vw + 1rem, 5rem);
       font-family: "Fascinate Inline", cursive;
-      margin-bottom: 2rem;
+      margin-bottom: clamp(1rem, 2vw + 1rem, 3rem);;
     }
 
     div.project-list-container {
@@ -107,7 +123,7 @@
       }
 
       @media (max-width: 500px) {
-        width: 100%;
+        width: 90%;
 
         .links {
           flex-direction: column;
@@ -152,22 +168,6 @@
     .scroll-btn {
       margin-top: 3rem;
     }
-
-    @media (max-width: 767px) {
-      .banner {
-        width: 100%;
-      }
-
-      h1 {
-        font-size: 2.3em;
-      }
-    }
-
-    @media (min-width: 768px) and (max-width: 1023px) {
-      .banner {
-        width: 80%;
-      }
-    }
   </style>
 </head>
 
@@ -175,12 +175,6 @@
   <main id="#onepage">
     <section id="banner" class="section">
       <img class="banner" src="$site.asset('banner.svg').link()" alt="$i18n.getOr('banner_description', 'A banner with the text MR-EMA in a retro game like style')">
-
-      <a href="#my-projects" class="scroll-btn" title="$i18n.getOr('next_section', 'Scroll To The Next Section')" aria-label="$i18n.getOr('next_section', 'Scroll To The Next Section')">
-        <span class="icon-container">
-          <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 48 48"> <g fill="none" stroke="currentColor" stroke-linejoin="round" stroke-width="4"> <path d="M24 44c11.046 0 20-8.954 20-20S35.046 4 24 4S4 12.954 4 24s8.954 20 20 20Z" /> <path stroke-linecap="round" d="m33 21l-9 9l-9-9" /> </g> </svg>
-        </span>
-      </a>
     </section>
 
     <section id="my-projects" class="section">
@@ -205,22 +199,6 @@
           <a href="https://github.com/mr-ema?tab=repositories" target="_blank" class="btn-link" :text="$i18n.getOr('other_projects', 'Other Proyects')"></a >
         </div>
       </div>
-
-      <a href="#about-me" class="scroll-btn" title="$i18n.getOr('next_section', 'Scroll To The Next Section')" aria-label="$i18n.getOr('next_section', 'Scroll To The Next Section')">
-        <span class="icon-container">
-          <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 48 48"> <g fill="none" stroke="currentColor" stroke-linejoin="round" stroke-width="4"> <path d="M24 44c11.046 0 20-8.954 20-20S35.046 4 24 4S4 12.954 4 24s8.954 20 20 20Z" /> <path stroke-linecap="round" d="m33 21l-9 9l-9-9" /> </g> </svg>
-        </span>
-      </a>
-    </section>
-
-    <section id="about-me" class="section">
-      <div class="centered" :html="$page.contentSection('about')"></div>
-
-      <a href="#links" class="scroll-btn" title="$i18n.getOr('next_section', 'Scroll To The Next Section')" aria-label="$i18n.getOr('next_section', 'Scroll To The Next Section')">
-        <span class="icon-container">
-          <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 48 48"> <g fill="none" stroke="currentColor" stroke-linejoin="round" stroke-width="4"> <path d="M24 44c11.046 0 20-8.954 20-20S35.046 4 24 4S4 12.954 4 24s8.954 20 20 20Z" /> <path stroke-linecap="round" d="m33 21l-9 9l-9-9" /> </g> </svg>
-        </span>
-      </a>
     </section>
 
     <section id="links" class="section">
@@ -241,13 +219,6 @@
           </span>
         </a>
       </div>
-
-      <a href="#banner" class="scroll-btn" title="$i18n.getOr('back2top', 'Go Back To Top')" aria-label="$i18n.getOr('back2top', 'Go Back To Top')">
-        <span class="icon-container">
-          <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 48 48"> <defs> <path id="ipOUpC0" d="M24 44c11.046 0 20-8.954 20-20S35.046 4 24 4S4 12.954 4 24s8.954 20 20 20" /> </defs> <g fill="none" stroke="currentColor" stroke-width="4"> <use href="#ipOUpC0" clip-rule="evenodd" /> <use href="#ipOUpC0" stroke-linejoin="round" /> <path stroke-linecap="round" stroke-linejoin="round" d="m33 27l-9-9l-9 9" /> </g> </svg>
-        </span>
-      </a>
     </section>
   </main>
-
 </div>
