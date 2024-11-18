@@ -31,6 +31,9 @@ pub fn build(b: *std.Build) !void {
             "fonts/JetBrainsMono-VariableFont_wght.ttf",
             "fonts/FascinateInline-Regular.ttf",
 
+            // Javascript
+            "js/lib/onepage-js/dist/onepage.js",
+
             // Others
             "games/cnake/index.wasm",
             "games/cnake/index.data",

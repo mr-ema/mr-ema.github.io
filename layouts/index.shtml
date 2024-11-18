@@ -2,6 +2,7 @@
 <title id="title" :text="$page.title"></title>
 
 <head id="head">
+  <script type="text/javascript" src="$site.asset('js/lib/onepage-js/dist/onepage.js').link()"></script>
   <style>
     nav {
       position: fixed;
@@ -42,6 +43,7 @@
       justify-content: center;
       flex-direction: column;
       min-height: 100vh;
+      width: 100%;
 
       div#about {
         display: flex;
@@ -170,8 +172,8 @@
 </head>
 
 <div id="content">
-  <main>
-    <section id="banner">
+  <main id="#onepage">
+    <section id="banner" class="section">
       <img class="banner" src="$site.asset('banner.svg').link()" alt="$i18n.getOr('banner_description', 'A banner with the text MR-EMA in a retro game like style')">
 
       <a href="#my-projects" class="scroll-btn" title="$i18n.getOr('next_section', 'Scroll To The Next Section')" aria-label="$i18n.getOr('next_section', 'Scroll To The Next Section')">
@@ -181,7 +183,7 @@
       </a>
     </section>
 
-    <section id="my-projects">
+    <section id="my-projects" class="section">
       <h1 :text="$i18n.getOr('my_projects', 'My Projects')"></h1>
 
       <div class="project-list-container">
@@ -211,7 +213,7 @@
       </a>
     </section>
 
-    <section id="about-me">
+    <section id="about-me" class="section">
       <div class="centered" :html="$page.contentSection('about')"></div>
 
       <a href="#links" class="scroll-btn" title="$i18n.getOr('next_section', 'Scroll To The Next Section')" aria-label="$i18n.getOr('next_section', 'Scroll To The Next Section')">
@@ -221,7 +223,7 @@
       </a>
     </section>
 
-    <section id="links">
+    <section id="links" class="section">
       <h1 :text="$i18n.getOr('links', 'Links')"></h1>
 
       <div class="links-container">
@@ -247,4 +249,5 @@
       </a>
     </section>
   </main>
+
 </div>
