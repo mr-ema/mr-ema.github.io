@@ -1,6 +1,3 @@
 [submodule "example"]
 	path = example
 	url = https://github.com/kristoff-it/zine-ssg.io.git
-[submodule "assets/js/lib/onepage-js"]
-	path = assets/js/lib/onepage-js
-	url = https://github.com/mr-ema/onepage-js.git

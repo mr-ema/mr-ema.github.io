@@ -2,6 +2,24 @@ const std = @import("std");
 const zine = @import("zine");
 
 pub fn build(b: *std.Build) !void {
+    var static_assets_list = std.ArrayList([]const u8).init(b.allocator);
+    _ = try static_assets_list.appendSlice(&[_][]const u8{
+        // "CNAME",
+        // Fonts referenced in CSS files
+        "fonts/JetBrainsMono-VariableFont_wght.ttf",
+        "fonts/FascinateInline-Regular.ttf",
+        // Javascript
+        "js/lib/onepage-js/dist/onepage.js",
+    });
+    _ = try static_assets_list.appendSlice(try includeFileList("assets/games", b, .{
+        .prefix = "games",
+        .allowed_exts = &[_][]const u8{"*"},
+    }));
+    _ = try static_assets_list.appendSlice(try includeFileList("assets/js/lib/onepage-js/examples", b, .{
+        .prefix = "js/lib/onepage-js/examples",
+        .allowed_exts = &[_][]const u8{".html"},
+    }));
+
     zine.multilingualWebsite(b, .{
         .host_url = "https://mr-ema.github.io",
         .layouts_dir_path = "layouts",
@@ -24,28 +42,7 @@ pub fn build(b: *std.Build) !void {
             },
         },
 
-        .static_assets = &.{
-            // "CNAME",
-
-            // Fonts referenced in CSS files
-            "fonts/JetBrainsMono-VariableFont_wght.ttf",
-            "fonts/FascinateInline-Regular.ttf",
-
-            // Javascript
-            "js/lib/onepage-js/dist/onepage.js",
-
-            // Onepage examples
-            "js/lib/onepage-js/examples/index.html",
-            "js/lib/onepage-js/examples/slides.html",
-            "js/lib/onepage-js/examples/overflow.html",
-            "js/lib/onepage-js/examples/horizontal.html",
-
-            // Games
-            "games/cnake/index.wasm",
-            "games/cnake/index.data",
-            "games/cnake/index.html",
-            "games/cnake/index.js",
-        },
+        .static_assets = static_assets_list.items,
         .build_assets = &.{
             .{
                 .name = "zon",
