@@ -231,11 +231,6 @@ code {
   text-align: center;
 }
 
-.dropdown-content a:hover {
-  background-color: var(--fg-1);
-  color: var(--bg-1);
-}
-
 .show {
   display: flex;
 }
