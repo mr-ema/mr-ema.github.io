@@ -129,7 +129,7 @@ var Onepage = (function () {
         function isParentElementScrollable(element, depth) {
             let parent = element.parentElement;
 
-            for (let level = depth; level <= depth; level += 1) {
+            for (let level = depth; level <= depth;) {
                 if (parent == null) break;
 
                 const hasVerticalScroll = parent.scrollHeight > parent.clientHeight;
@@ -141,7 +141,9 @@ var Onepage = (function () {
                 parent = parent?.parentElement;
 
                 // Keep Iterating Until There Is No More Parents Elements
-                if (depth === -1) level = depth;
+                if (depth !== -1) {
+                    level += 1;
+                }
             }
 
             return false;
@@ -171,7 +173,7 @@ var Onepage = (function () {
         function tryToGetScrollableParentElement(element, depth = 0) {
             let parent = element.parentElement;
 
-            for (let level = depth; level <= depth; level += 1) {
+            for (let level = depth; level <= depth;) {
                 if (parent == null) break;
 
                 const hasVerticalScroll = parent.scrollHeight > parent.clientHeight;
@@ -183,7 +185,9 @@ var Onepage = (function () {
                 parent = parent?.parentElement;
 
                 // Keep Iterating Until There Is No More Parents Elements
-                if (depth === -1) level = depth;
+                if (depth !== -1) {
+                    level += 1;
+                }
             }
 
             return null;
@@ -197,7 +201,7 @@ var Onepage = (function () {
         function slideParentCtnOrNull(slide, depth = 0) {
             let parent = slide.parentElement;
 
-            for (let level = depth; level <= depth; level += 1) {
+            for (let level = depth; level <= depth;) {
                 if (parent == null) break;
 
                 if (parent.classList.contains(constants.SLIDER_WRAPPER_CLASS_NAME)) {
@@ -207,7 +211,9 @@ var Onepage = (function () {
                 parent = parent?.parentElement;
 
                 // Keep Iterating Until There Is No More Parents Elements
-                if (depth === -1) level = depth;
+                if (depth !== -1) {
+                    level += 1;
+                }
             }
 
             return null;
@@ -221,7 +227,7 @@ var Onepage = (function () {
         function sectionParentOrNull(element, depth = 0) {
             let parent = element.parentElement;
 
-            for (let level = depth; level <= depth; level += 1) {
+            for (let level = depth; level <= depth;) {
                 if (parent == null) break;
 
                 if (parent.classList.contains(constants.SECTION_CLASS_NAME)) {
@@ -231,7 +237,10 @@ var Onepage = (function () {
                 parent = parent?.parentElement;
 
                 // Keep Iterating Until There Is No More Parents Elements
-                if (depth === -1) level = depth;
+                if (depth !== -1) {
+                    level += 1;
+                }
+
             }
 
             return null;
@@ -243,11 +252,13 @@ var Onepage = (function () {
          * @returns {boolean}
          */
         function hasReachedEndOfScroll(element, direction = "vertical") {
+            const tolerance = 1; // Allow a small margin for rounding errors
+
             switch (direction.toLowerCase()) {
                 case "vertical":
-                    return ((element.scrollTop + element.clientHeight) >= element.scrollHeight);
+                    return ((element.scrollTop + element.clientHeight + tolerance) >= element.scrollHeight);
                 case "horizontal":
-                    return ((element.scrollLeft + element.clientWidth) >= element.scrollWidth);
+                    return ((element.scrollLeft + element.clientWidth + tolerance) >= element.scrollWidth);
             }
 
             return false;
@@ -259,11 +270,13 @@ var Onepage = (function () {
          * @returns {boolean}
          */
         function hasReachedStartOfScroll(element, direction = "vertical") {
+            const tolerance = 1; // Allow a small margin for rounding errors
+
             switch (direction.toLowerCase()) {
                 case "vertical":
-                    return (element.scrollTop === 0);
+                    return (element.scrollTop <= tolerance);
                 case "horizontal":
-                    return (element.scrollLeft === 0);
+                    return (element.scrollLeft <= tolerance);
             }
 
             return false;
@@ -361,9 +374,9 @@ var Onepage = (function () {
                 if (source.hasOwnProperty(key)) {
                     if (source[key] instanceof Object && target[key] instanceof Object) {
                         target[key] = deepMerge(target[key], source[key]);
+                    } else {
+                        target[key] = source[key];
                     }
-                } else {
-                    target[key] = source[key];
                 }
             }
 
@@ -416,7 +429,7 @@ var Onepage = (function () {
             const matches = raw.match(regex);
             if (matches) {
                 // Clean up matches to remove the leading dot and trailing `{`
-                return matches.map(match => match.replace(/^\.\s*|[{]\s*$/g, ''));
+                return matches.map(match => match.replace(/^\.\s*|\s*{\s*$/g, ""));
             }
 
             return [];
@@ -470,11 +483,12 @@ var Onepage = (function () {
          */
         function isElementBeforeOrAfter(element, sibling) {
             if (element === sibling) return "same"
+            if (element.parentElement !== sibling.parentElement) return -1;
 
             const position = element.compareDocumentPosition(sibling);
-            if (position & Node.DOCUMENT_POSITION_PRECEDING) {
+            if (position & Node.DOCUMENT_POSITION_FOLLOWING) {
                 return "before";
-            } else if (position & Node.DOCUMENT_POSITION_FOLLOWING) {
+            } else if (position & Node.DOCUMENT_POSITION_PRECEDING) {
                 return "after";
             }
 
@@ -1142,11 +1156,10 @@ var Onepage = (function () {
          * @type {SwipeEventHandler}
          */
         const SwipeEventHandler = (() => {
-            const { MOUSE_SWIPE_DISCARDED_BUTTONS } = constants;
-
             let _isListen = false;
+
             let _startPos = /** @type {Vector2} */  { x: 0, y: 0 };
-            let _currentPos = /** @type {Vector2} */  { x: 0, y: 0 };
+            let _endPos = /** @type {Vector2} */  { x: 0, y: 0 };
 
             /** @type {{ [key: string]: Array<(event: SwipeEvent) => void | Promise<void>>}} */
             const _listeners = {
@@ -1198,13 +1211,13 @@ var Onepage = (function () {
              */
             async function _handleSwipeStart(event) {
                 if (window?.TouchEvent && event instanceof TouchEvent) {
-                    _startPos.x = event.changedTouches[0].screenX;
-                    _startPos.y = event.changedTouches[0].screenY;
+                    _startPos.x = event.changedTouches[0].clientX;
+                    _startPos.y = event.changedTouches[0].clientY;
                 } else if (window?.PointerEvent && event instanceof PointerEvent) {
                     const button = /** @type {MouseButton} */ (event.button);
                     if (!(constants.MOUSE_SWIPE_DISCARDED_BUTTONS.includes(button))) {
-                        _startPos.x = event.screenX;
-                        _startPos.y = event.screenY;
+                        _startPos.x = event.clientX;
+                        _startPos.y = event.clientY;
                     }
                     Logger.debug("SwipeEventHandler: pressed mouse button code on 'swipeStart': ", [button]);
                 }
@@ -1216,18 +1229,39 @@ var Onepage = (function () {
              * @param event {SwipeEvent}
              * @returns {Promise<void>}
              */
-            async function _handleSwipeEnd(event) {
-                _currentPos.x = 0;
-                _currentPos.y = 0;
+            async function _handleSwipeMove(event) {
+                _endPos.x = 0;
+                _endPos.y = 0;
 
                 if (window?.TouchEvent && event instanceof TouchEvent) {
-                    _currentPos.x = event.changedTouches[0].screenX;
-                    _currentPos.y = event.changedTouches[0].screenY;
+                    _endPos.x = event.changedTouches[0].clientX;
+                    _endPos.y = event.changedTouches[0].clientY;
                 } else if (window?.PointerEvent && event instanceof PointerEvent) {
                     const button = /** @type {MouseButton} */ (event.button);
                     if (!(constants.MOUSE_SWIPE_DISCARDED_BUTTONS.includes(button))) {
-                        _currentPos.x = event.screenX;
-                        _currentPos.y = event.screenY;
+                        _endPos.x = event.clientX;
+                        _endPos.y = event.clientY;
+                    }
+
+                    Logger.debug("SwipeEventHandler: pressed mouse button code on 'swipeMove': ", [button]);
+                }
+            }
+
+            /**
+             * @param event {SwipeEvent}
+             * @returns {Promise<void>}
+             */
+            async function _handleSwipeEnd(event) {
+                if (window?.TouchEvent && event instanceof TouchEvent) {
+                    _endPos.x = event.changedTouches[0].clientX;
+                    _endPos.y = event.changedTouches[0].clientY;
+                } else if (window?.PointerEvent && event instanceof PointerEvent) {
+                    const button = /** @type {MouseButton} */ (event.button);
+                    if (!(constants.MOUSE_SWIPE_DISCARDED_BUTTONS.includes(button))) {
+                        if (event.clientX !== 0 || event.clientY !== 0) {
+                            _endPos.x = event.clientX;
+                            _endPos.y = event.clientY;
+                        }
                     }
 
                     Logger.debug("SwipeEventHandler: pressed mouse button code on 'swipeEnd': ", [button]);
@@ -1238,18 +1272,18 @@ var Onepage = (function () {
 
             /** @type {typeof SwipeEventHandler.getAxis} */
             function getAxis(direction = "vertical") {
-                if (_currentPos.x === 0 && _currentPos.y === 0) return 0;
+                const diffX = _endPos.x - _startPos.x;
+                const diffY = _endPos.y - _startPos.y;
 
-                const diffX = _startPos.x - _currentPos.x;
-                const diffY = _startPos.y - _currentPos.y;
+                if (diffX === 0 && diffY === 0) return 0;
 
                 if (Math.abs(diffX) > Math.abs(diffY)) {
                     if (Math.abs(diffX) >= constants.TOUCH_THRESHOLD && direction === "horizontal") {
-                        return (diffX >= 0 ? 1 : -1);
+                        return (diffX >= 0 ? -1 : 1);
                     }
                 } else {
                     if (Math.abs(diffY) >= constants.TOUCH_THRESHOLD && direction === "vertical") {
-                        return (diffY >= 0 ? 1 : -1);
+                        return (diffY >= 0 ? -1 : 1);
                     }
                 }
 
@@ -1264,16 +1298,43 @@ var Onepage = (function () {
                 return (has_touch || (has_pointer && settings.scroll.swipeScroll));
             }
 
+            /** @param event {TouchEvent} */
+            function _handlePointerTouch(event) {
+                /**
+                 * @param element {Element}
+                 * @returns {boolean}
+                 */
+                function _hasOverflowScroll(element) {
+                    if (settings.scroll.overflowScroll) {
+                        let scrollable = utils.tryToGetScrollableParentElement(element);
+                        if (scrollable !== null) {
+                            const axis = getAxis("vertical");
+
+                            if (axis === -1) return !(utils.hasReachedStartOfScroll(scrollable));
+                            if (axis === 1) return !(utils.hasReachedEndOfScroll(scrollable));
+                        }
+                    }
+
+                    return false;
+                }
+
+                const target = /** @type {Element | null} */ (event.target);
+                if (target !== null && _hasOverflowScroll(target) === false) {
+                    event.preventDefault();
+                }
+            }
+
             function startListen() {
                 if (_isListen) return;
 
                 if ((window?.PointerEvent && settings.scroll.swipeScroll) || window?.TouchEvent) {
                     document.addEventListener("pointerdown", _handleSwipeStart, false);
+                    document.addEventListener("pointermove", _handleSwipeMove, false);
                     document.addEventListener("pointerup", _handleSwipeEnd, false);
-                    document.addEventListener("pointermove", event => event.preventDefault(), false);
+                    document.addEventListener("pointercancel", _handleSwipeEnd, false);
 
-                    if (settings.scroll.overflowScroll) {
-                        document.addEventListener("pointercancel", _handleSwipeEnd, false);
+                    if (window?.TouchEvent) {
+                        document.addEventListener("touchstart", _handlePointerTouch, { passive: false });
                     }
 
                     Logger.debug("SwipeEventHandler: pointer event listeners [started]");
@@ -1284,10 +1345,7 @@ var Onepage = (function () {
                     document.addEventListener("touchstart", _handleSwipeStart, false);
                     document.addEventListener("touchend", _handleSwipeEnd, false);
                     document.addEventListener("touchmove", event => event.preventDefault(), false);
-
-                    if (settings.scroll.overflowScroll) {
-                        document.addEventListener("touchcancel", _handleSwipeEnd, false);
-                    }
+                    document.addEventListener("touchcancel", _handleSwipeEnd, false);
 
                     Logger.debug("SwipeEventHandler: touch event listeners [started]");
                 }
@@ -1300,8 +1358,13 @@ var Onepage = (function () {
 
                 if ((window?.PointerEvent && settings.scroll.swipeScroll) || window?.TouchEvent) {
                     document.removeEventListener("pointerdown", _handleSwipeStart, false);
+                    document.removeEventListener("pointermove", _handleSwipeMove, false);
                     document.removeEventListener("pointerup", _handleSwipeEnd, false);
-                    document.removeEventListener("pointermove", event => event.preventDefault(), false);
+                    document.removeEventListener("pointercancel", _handleSwipeEnd, false);
+
+                    if (window?.TouchEvent) {
+                        document.removeEventListener("touchstart", _handlePointerTouch);
+                    }
 
                     Logger.debug("SwipeEventHandler: pointer event listeners [stoped]");
                 }
@@ -1770,7 +1833,20 @@ var Onepage = (function () {
                 const sliders = utils.getSliderListInElement(section);
                 const aloneSlides = utils.getSingleSlidesInElementOrNull(section);
                 if (aloneSlides !== null) {
-                    sliderList.push(Slider(aloneSlides));
+                    let shouldAdd = (() => {
+                        for (const idx in aloneSlides) {
+                            const slideParent = aloneSlides[idx].parentElement;
+                            if (slideParent !== null) {
+                                return !utils.isSlider(/** @type {Element} */(slideParent));
+                            }
+                        }
+
+                        return true;
+                    })();
+
+                    if (shouldAdd) {
+                        sliderList.push(Slider(aloneSlides));
+                    }
                 }
 
                 sliders.forEach(slider => {
